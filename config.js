@@ -8,6 +8,11 @@ const MM_CONFIG = {
   // Deploy your Apps Script as a Web App and paste the URL here.
   APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbymCj5hZlG5OeVeihQI5Xrr4t11dFqvhe0soBjpL4PdOhHRFmqN6_aUg5fk89fdQHGj/exec",
 
+  // ── Free Consultation Endpoint (Optional) ──────────────────────────────────
+  // If you use a separate Apps Script Web App for Free Consultations, paste it here.
+  // If left empty, it will route through APPS_SCRIPT_URL with action: "createConsultation"
+  CONSULTATION_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxvxvntMaNJrVB3R9mIpXNBrYe7YESKVeyMpkVBPWAYJAHqgqd5e95GoEv7qZr4O50Seg/exec",
+
   // ── UPI Payment ────────────────────────────────────────────────────────────
   UPI_ID: "nnaju044-2@oksbi",
   BUSINESS_NAME: "MathsManthra Academy",
