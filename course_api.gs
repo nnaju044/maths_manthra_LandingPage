@@ -65,6 +65,21 @@ function doGet() {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+// ── Quick Test & Permission Authorization ────────────────────────────────────
+// Run this function once in the Apps Script editor to authorize Drive & Sheets permissions!
+function testSetup() {
+  try {
+    const ss = SpreadsheetApp.openById(COURSE_CONFIG.SPREADSHEET_ID);
+    Logger.log("✅ Spreadsheet opened successfully: " + ss.getName());
+    const folder = DriveApp.getFolderById(COURSE_CONFIG.DRIVE_FOLDER_ID);
+    Logger.log("✅ Drive Folder opened successfully: " + folder.getName());
+    return "All permissions authorized successfully!";
+  } catch (err) {
+    Logger.log("❌ Error during testSetup: " + err.message);
+    throw err;
+  }
+}
+
 // ── Leads ────────────────────────────────────────────────────────────────────
 function createLead(data) {
   const ss    = SpreadsheetApp.openById(COURSE_CONFIG.SPREADSHEET_ID);

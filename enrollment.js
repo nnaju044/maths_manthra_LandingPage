@@ -102,22 +102,48 @@
   const isMobile = () => /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // ── NETWORK
+  // ── NETWORK & CONFIG
   // ═══════════════════════════════════════════════════════════════════════════
 
+  function getConfig() {
+    if (typeof window !== "undefined" && window.MM_CONFIG) return window.MM_CONFIG;
+    if (typeof MM_CONFIG !== "undefined") return MM_CONFIG;
+    return {};
+  }
+
   async function apiPost(url, payload) {
-    const res  = await fetch(url, {
-      method:  "POST",
-      headers: { "Content-Type": "text/plain" }, // Apps Script CORS requirement
-      body:    JSON.stringify(payload),
-    });
-    const data = await res.json();
+    let res;
+    try {
+      res = await fetch(url, {
+        method:  "POST",
+        headers: { "Content-Type": "text/plain" }, // Apps Script CORS requirement
+        body:    JSON.stringify(payload),
+      });
+    } catch (netErr) {
+      console.error("[MM] Network / CORS error connecting to Apps Script:", netErr);
+      throw new Error("Unable to reach Google Apps Script. Check network connection.");
+    }
+
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (parseErr) {
+      console.error("[MM] Non-JSON response received from Apps Script:\n", text);
+      if (text.includes("Page not found") || text.includes("Sorry, unable to open")) {
+        throw new Error("Apps Script deployment returned 'Page not found'. Please ensure 'Who has access' is set to 'Anyone' in your Web App deployment settings.");
+      }
+      throw new Error("Invalid response from server. Check Apps Script deployment permissions.");
+    }
+
     if (!data.success) throw new Error(data.error || "Server error");
     return data;
   }
 
   function isDemoUrl(url) {
-    return !url || url.startsWith("REPLACE_");
+    if (!url || typeof url !== "string") return true;
+    const u = url.trim();
+    return u === "" || u.startsWith("REPLACE_") || u.includes("YOUR_DEPLOYMENT_ID");
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
