@@ -6,7 +6,7 @@ const MM_CONFIG = {
 
   // ── Google Apps Script ─────────────────────────────────────────────────────
   // Deploy your Apps Script as a Web App and paste the URL here.
-  COURSE_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyU6m-bl0MMbwoMp8Ku1m_V7ObdbSCp6yCa1emC10udfJ_sgZK8gwN_XgDci8e5l_SQ/exec",
+  COURSE_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwoGLYjOVrh1Bc52O3G8v1utLoIpdjayhqq7D8xr-FZ5-fppDfpBOro8YmtYNAG0_BpKA/exec",
 
   // ── Free Consultation Endpoint (Optional) ──────────────────────────────────
   // If you use a separate Apps Script Web App for Free Consultations, paste it here.
