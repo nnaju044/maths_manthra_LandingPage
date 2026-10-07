@@ -311,7 +311,7 @@
 
     try {
 
-      // Generate Lead ID locally only
+      // Generate Lead ID
       const generatedLeadId = generateLeadId();
 
       enroll.leadId = generatedLeadId;
@@ -322,10 +322,22 @@
       enroll.courseName = courseObj.label;
       enroll.price = courseObj.price;
 
-      console.log(
-        "[MM] Lead saved locally:",
-        generatedLeadId
-      );
+      const leadPayload = {
+        action: "createLead",
+        leadId: generatedLeadId,
+        name: name,
+        phone: phone,
+        email: email,
+        course: courseObj.label,
+        price: courseObj.price,
+      };
+
+      if (!isDemoUrl(MM_CONFIG.COURSE_APPS_SCRIPT_URL)) {
+        console.log("[MM] Sending createLead request to Apps Script...");
+        await apiPost(MM_CONFIG.COURSE_APPS_SCRIPT_URL, leadPayload);
+      }
+
+      console.log("[MM] Lead saved:", generatedLeadId);
 
       closeSheet("mm-enroll-sheet");
       openPaymentSheet();

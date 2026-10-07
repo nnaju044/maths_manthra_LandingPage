@@ -14,7 +14,7 @@ const MM_CONFIG = {
   CONSULTATION_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxvxvntMaNJrVB3R9mIpXNBrYe7YESKVeyMpkVBPWAYJAHqgqd5e95GoEv7qZr4O50Seg/exec",
 
   // ── UPI Payment ────────────────────────────────────────────────────────────
-  UPI_ID: "nnaju044-2@oksbi",
+  UPI_ID: "smijasmija006@oksbi",
   BUSINESS_NAME: "MathsManthra Academy",
 
   // ── WhatsApp Support ───────────────────────────────────────────────────────
