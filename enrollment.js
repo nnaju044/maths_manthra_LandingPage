@@ -17,24 +17,24 @@
 
   /** Course Enrollment state */
   const enroll = {
-    leadId:     null,
-    name:       null,
-    phone:      null,
-    email:      null,
-    courseId:   null,
+    leadId: null,
+    name: null,
+    phone: null,
+    email: null,
+    courseId: null,
     courseName: null,
-    price:      null,
-    busy:       false,
-    uploading:  false,
+    price: null,
+    busy: false,
+    uploading: false,
   };
 
   /** Free Consultation state */
   const consult = {
     consultId: null,
-    name:      null,
-    phone:     null,
-    email:     null,
-    busy:      false,
+    name: null,
+    phone: null,
+    email: null,
+    busy: false,
   };
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -93,9 +93,16 @@
     const btn = $(btnId);
     if (!btn) return;
     btn.disabled = loading;
-    const textEl  = btn.querySelector(".mm-btn-text");
+    btn.classList.toggle("pointer-events-none", loading);
+    btn.classList.toggle("cursor-not-allowed", loading);
+    if (loading) {
+      btn.setAttribute("aria-busy", "true");
+    } else {
+      btn.removeAttribute("aria-busy");
+    }
+    const textEl = btn.querySelector(".mm-btn-text");
     const spinner = btn.querySelector(".mm-spinner");
-    if (textEl)  textEl.textContent = loading ? textEl.dataset.loading || defaultText : (textEl.dataset.default || defaultText);
+    if (textEl) textEl.textContent = loading ? textEl.dataset.loading || defaultText : (textEl.dataset.default || defaultText);
     if (spinner) spinner.classList.toggle("hidden", !loading);
   }
 
@@ -115,9 +122,9 @@
     let res;
     try {
       res = await fetch(url, {
-        method:  "POST",
+        method: "POST",
         headers: { "Content-Type": "text/plain" }, // Apps Script CORS requirement
-        body:    JSON.stringify(payload),
+        body: JSON.stringify(payload),
       });
     } catch (netErr) {
       console.error("[MM] Network / CORS error connecting to Apps Script:", netErr);
@@ -179,6 +186,11 @@
     });
   }
 
+  // ── Lead ID Generator ─────────────────────────────────────────────────────
+  function generateLeadId() {
+    return "MM" + String(Date.now()).slice(-4);
+  }
+
   // ── Build UPI URL ─────────────────────────────────────────────────────────
   function buildUpiUrl(leadId, price) {
     const p = new URLSearchParams({
@@ -209,9 +221,9 @@
     if (desktopHint) desktopHint.style.display = isMobile() ? "none" : "";
 
     const apps = [
-      { id: "mm-btn-gpay",    url: upiUrl.replace("upi://pay", "gpay://upi/pay") },
+      { id: "mm-btn-gpay", url: upiUrl.replace("upi://pay", "gpay://upi/pay") },
       { id: "mm-btn-phonepe", url: upiUrl.replace("upi://", "phonepe://") },
-      { id: "mm-btn-paytm",   url: upiUrl.replace("upi://", "paytmmp://") },
+      { id: "mm-btn-paytm", url: upiUrl.replace("upi://", "paytmmp://") },
       { id: "mm-btn-generic", url: upiUrl },
     ];
     apps.forEach(({ id, url }) => {
@@ -222,65 +234,124 @@
 
   // ── PHASE 1: Submit Lead ──────────────────────────────────────────────────
   async function submitLead(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === "function") {
+        e.stopImmediatePropagation();
+      }
+    }
+
     if (enroll.busy) return;
 
-    clearFieldErrors("mm-err-name", "mm-err-phone", "mm-err-email", "mm-err-course");
+    clearFieldErrors(
+      "mm-err-name",
+      "mm-err-phone",
+      "mm-err-email",
+      "mm-err-course"
+    );
 
-    const name   = $("mm-name").value.trim();
-    const phone  = $("mm-phone").value.trim();
-    const email  = $("mm-email").value.trim();
+    const name = $("mm-name").value.trim();
+    const phone = $("mm-phone").value.trim();
+    const email = $("mm-email").value.trim();
     const course = $("mm-course-select").value;
 
     let ok = true;
-    if (!name)                                           { fieldError("mm-err-name",   "Name is required"); ok = false; }
-    if (!/^[6-9]\d{9}$/.test(phone))                    { fieldError("mm-err-phone",  "Enter a valid 10-digit Indian mobile number"); ok = false; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))      { fieldError("mm-err-email",  "Enter a valid email address"); ok = false; }
-    if (!course)                                         { fieldError("mm-err-course", "Please select a course"); ok = false; }
+
+    if (!name) {
+      fieldError("mm-err-name", "Name is required");
+      ok = false;
+    }
+
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      fieldError(
+        "mm-err-phone",
+        "Enter a valid 10-digit Indian mobile number"
+      );
+      ok = false;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      fieldError(
+        "mm-err-email",
+        "Enter a valid email address"
+      );
+      ok = false;
+    }
+
+    if (!course) {
+      fieldError(
+        "mm-err-course",
+        "Please select a course"
+      );
+      ok = false;
+    }
+
     if (!ok) return;
 
-    const courseObj = (MM_CONFIG.COURSES || []).find(c => c.id === course);
-    if (!courseObj) { fieldError("mm-err-course", "Invalid course selected"); return; }
+    const courseObj =
+      (MM_CONFIG.COURSES || []).find(
+        c => c.id === course
+      );
+
+    if (!courseObj) {
+      fieldError(
+        "mm-err-course",
+        "Invalid course selected"
+      );
+      return;
+    }
 
     enroll.busy = true;
-    setBtn("mm-submit-lead", true, "Saving…");
+    setBtn(
+      "mm-submit-lead",
+      true,
+      "Saving..."
+    );
 
     try {
-      let leadId;
 
-      if (!isDemoUrl(MM_CONFIG.COURSE_APPS_SCRIPT_URL)) {
-        const data = await apiPost(MM_CONFIG.COURSE_APPS_SCRIPT_URL, {
-          action:   "createLead",
-          name, phone, email,
-          course:   courseObj.label,
-          courseId: courseObj.id,
-          price:    courseObj.price,
-          source:   "landing_page",
-        });
-        leadId = data.leadId;
-      } else {
-        // Demo / not yet configured
-        leadId = "MM" + String(Date.now()).slice(-4);
-        console.warn("[MM] COURSE_APPS_SCRIPT_URL not set — running in demo mode.");
-      }
+      // Generate Lead ID locally only
+      const generatedLeadId = generateLeadId();
 
-      enroll.leadId     = leadId;
-      enroll.name       = name;
-      enroll.phone      = phone;
-      enroll.email      = email;
-      enroll.courseId   = course;
+      enroll.leadId = generatedLeadId;
+      enroll.name = name;
+      enroll.phone = phone;
+      enroll.email = email;
+      enroll.courseId = course;
       enroll.courseName = courseObj.label;
-      enroll.price      = courseObj.price;
+      enroll.price = courseObj.price;
+
+      console.log(
+        "[MM] Lead saved locally:",
+        generatedLeadId
+      );
 
       closeSheet("mm-enroll-sheet");
       openPaymentSheet();
 
     } catch (err) {
-      console.error("[MM] Lead error:", err);
-      fieldError("mm-err-course", "Something went wrong. Please try again.");
+
+      console.error(
+        "[MM] Lead error:",
+        err
+      );
+
+      fieldError(
+        "mm-err-course",
+        "Something went wrong. Please try again."
+      );
+
     } finally {
+
       enroll.busy = false;
-      setBtn("mm-submit-lead", false, "Proceed to Payment →");
+
+      setBtn(
+        "mm-submit-lead",
+        false,
+        "Proceed to Payment →"
+      );
+
     }
   }
 
@@ -289,9 +360,9 @@
     const upiUrl = buildUpiUrl(enroll.leadId, enroll.price);
 
     $("mm-pay-lead-id").textContent = enroll.leadId;
-    $("mm-pay-amount").textContent  = "₹" + enroll.price;
-    $("mm-pay-name").textContent    = enroll.name;
-    $("mm-pay-course").textContent  = enroll.courseName;
+    $("mm-pay-amount").textContent = "₹" + enroll.price;
+    $("mm-pay-name").textContent = enroll.name;
+    $("mm-pay-course").textContent = enroll.courseName;
 
     renderQr(upiUrl);
     wirePaymentButtons(upiUrl);
@@ -301,7 +372,7 @@
   // ── PHASE 3: Upload Screen ────────────────────────────────────────────────
   function openUploadSheet() {
     $("mm-upload-lead-id").textContent = enroll.leadId;
-    $("mm-upload-amount").textContent  = "₹" + enroll.price;
+    $("mm-upload-amount").textContent = "₹" + enroll.price;
     const fi = $("mm-file-input");
     if (fi) fi.value = "";
     const prev = $("mm-file-preview");
@@ -309,6 +380,8 @@
     const prog = $("mm-upload-progress");
     if (prog) prog.classList.add("hidden");
     clearFieldErrors("mm-err-file");
+    enroll.uploading = false;
+    setBtn("mm-submit-proof", false, "Submit Payment Proof");
     openSheet("mm-upload-sheet");
   }
 
@@ -341,43 +414,98 @@
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
       const r = new FileReader();
-      r.onload  = () => resolve(r.result.split(",")[1]);
-      r.onerror = reject;
+      r.onload = () => {
+        try {
+          const res = r.result;
+          if (!res || typeof res !== "string") {
+            throw new Error("FileReader returned empty result");
+          }
+          const base64 = res.indexOf(",") > -1 ? res.split(",")[1] : res;
+          console.log("[MM] Step 2: imageBase64 generated successfully. Size:", Math.round(base64.length / 1024), "KB");
+          resolve(base64);
+        } catch (err) {
+          console.error("[MM] Error extracting base64:", err);
+          reject(err);
+        }
+      };
+      r.onerror = err => {
+        console.error("[MM] FileReader error:", err);
+        reject(err);
+      };
       r.readAsDataURL(file);
     });
   }
 
   // ── PHASE 4: Submit Payment Proof ─────────────────────────────────────────
   async function submitProof(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === "function") {
+        e.stopImmediatePropagation();
+      }
+    }
+
+    // Strict concurrency lock: abort if an upload is already running
     if (enroll.uploading) return;
 
     clearFieldErrors("mm-err-file");
-    const file = $("mm-file-input").files[0];
-    if (!file) { fieldError("mm-err-file", "Please upload your payment screenshot."); return; }
+    const file = $("mm-file-input") ? $("mm-file-input").files[0] : null;
+    if (!file) {
+      fieldError("mm-err-file", "Please upload your payment screenshot.");
+      return;
+    }
 
+    // Lock submission & trigger visual loading state immediately
     enroll.uploading = true;
     setBtn("mm-submit-proof", true, "Uploading…");
     const prog = $("mm-upload-progress");
     if (prog) prog.classList.remove("hidden");
 
     try {
+      console.log("[MM] Step 1: Image selected. Name:", file.name, "Type:", file.type, "Size:", Math.round(file.size / 1024), "KB");
+
+      const base64 = await fileToBase64(file);
+      if (!base64 || base64.trim() === "") {
+        throw new Error("Failed to generate image base64 data.");
+      }
+
+      const proofPayload = {
+        action: "savePaymentProof",
+        leadId: enroll.leadId,
+        name: enroll.name,
+        phone: enroll.phone,
+        amount: enroll.price,
+        fileName: file.name,
+        fileType: file.type || "image/jpeg",
+        imageBase64: base64, // Primary field expected by Apps Script
+        fileData: base64,    // Backward compatible alias
+      };
+
+      console.log("[MM] Step 3: Payload prepared with imageBase64 (length: " + base64.length + "):", {
+        action: proofPayload.action,
+        leadId: proofPayload.leadId,
+        name: proofPayload.name,
+        phone: proofPayload.phone,
+        amount: proofPayload.amount,
+        fileName: proofPayload.fileName,
+        fileType: proofPayload.fileType,
+        hasImageBase64: Boolean(proofPayload.imageBase64),
+      });
+
       if (!isDemoUrl(MM_CONFIG.COURSE_APPS_SCRIPT_URL)) {
-        const base64 = await fileToBase64(file);
-        await apiPost(MM_CONFIG.COURSE_APPS_SCRIPT_URL, {
-          action:   "savePaymentProof",
-          leadId:   enroll.leadId,
-          name:     enroll.name,
-          phone:    enroll.phone,
-          amount:   enroll.price,
-          fileName: file.name,
-          fileType: file.type,
-          fileData: base64,
-        });
+        console.log("[MM] Step 4: Sending POST request to Apps Script...");
+        const data = await apiPost(MM_CONFIG.COURSE_APPS_SCRIPT_URL, proofPayload);
+        console.log("[MM] Step 5: Apps Script response received:", data);
+        if (data.fileUrl) {
+          console.log("[MM] Step 6: Screenshot uploaded to Drive! URL:", data.fileUrl);
+        } else {
+          console.warn("[MM] Warning: Apps Script did not return fileUrl:", data);
+        }
       } else {
         // Demo mode
         await new Promise(r => setTimeout(r, 1500));
-        console.warn("[MM] COURSE_APPS_SCRIPT_URL not set — screenshot not uploaded.");
+        console.warn("[MM] COURSE_APPS_SCRIPT_URL not set — running in demo mode. Demo Lead ID:", enroll.leadId);
       }
 
       closeSheet("mm-upload-sheet");
@@ -385,7 +513,7 @@
 
     } catch (err) {
       console.error("[MM] Upload error:", err);
-      fieldError("mm-err-file", "Upload failed. Please try again.");
+      fieldError("mm-err-file", "Upload failed: " + (err.message || "Please try again."));
     } finally {
       enroll.uploading = false;
       setBtn("mm-submit-proof", false, "Submit Payment Proof");
@@ -412,21 +540,27 @@
   // ═══════════════════════════════════════════════════════════════════════════
 
   async function submitConsultation(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === "function") {
+        e.stopImmediatePropagation();
+      }
+    }
     if (consult.busy) return;
 
     clearFieldErrors("mm-err-c-name", "mm-err-c-phone", "mm-err-c-email");
 
-    const name   = $("mm-c-name")  ? $("mm-c-name").value.trim() : "";
-    const phone  = $("mm-c-phone") ? $("mm-c-phone").value.trim() : "";
-    const email  = $("mm-c-email") ? $("mm-c-email").value.trim() : "";
+    const name = $("mm-c-name") ? $("mm-c-name").value.trim() : "";
+    const phone = $("mm-c-phone") ? $("mm-c-phone").value.trim() : "";
+    const email = $("mm-c-email") ? $("mm-c-email").value.trim() : "";
     const course = $("mm-c-course") ? $("mm-c-course").value : "";
-    const role   = $("mm-c-role")  ? $("mm-c-role").value : "";
-    const notes  = $("mm-c-notes") ? $("mm-c-notes").value.trim() : "";
+    const role = $("mm-c-role") ? $("mm-c-role").value : "";
+    const notes = $("mm-c-notes") ? $("mm-c-notes").value.trim() : "";
 
     let ok = true;
-    if (!name)                                      { fieldError("mm-err-c-name",  "Name is required"); ok = false; }
-    if (!/^[6-9]\d{9}$/.test(phone))               { fieldError("mm-err-c-phone", "Enter a valid 10-digit Indian mobile number"); ok = false; }
+    if (!name) { fieldError("mm-err-c-name", "Name is required"); ok = false; }
+    if (!/^[6-9]\d{9}$/.test(phone)) { fieldError("mm-err-c-phone", "Enter a valid 10-digit Indian mobile number"); ok = false; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { fieldError("mm-err-c-email", "Enter a valid email address"); ok = false; }
     if (!ok) return;
 
@@ -449,9 +583,9 @@
       }
 
       consult.consultId = consultId;
-      consult.name      = name;
-      consult.phone     = phone;
-      consult.email     = email;
+      consult.name = name;
+      consult.phone = phone;
+      consult.email = email;
 
       const form = $("mm-consult-form");
       if (form) form.reset();
@@ -485,7 +619,12 @@
   // ── INIT
   // ═══════════════════════════════════════════════════════════════════════════
 
+  let initialized = false;
+
   function init() {
+    if (initialized) return;
+    initialized = true;
+
     populateCourses();
     populateConsultCourses();
 
@@ -510,7 +649,13 @@
 
     // ── Enrollment form ──────────────────────────────────────────────────────
     const enrollForm = $("mm-enroll-form");
-    if (enrollForm) enrollForm.addEventListener("submit", submitLead);
+    const enrollBtn = $("mm-submit-lead");
+    if (enrollBtn) enrollBtn.onclick = null;
+    if (enrollForm) {
+      enrollForm.onsubmit = null;
+      enrollForm.removeEventListener("submit", submitLead);
+      enrollForm.addEventListener("submit", submitLead);
+    }
 
     // "I've Paid" button
     const paidBtn = $("mm-ive-paid");
@@ -525,7 +670,13 @@
 
     // Proof upload form
     const proofForm = $("mm-proof-form");
-    if (proofForm) proofForm.addEventListener("submit", submitProof);
+    const proofBtn = $("mm-submit-proof");
+    if (proofBtn) proofBtn.onclick = null;
+    if (proofForm) {
+      proofForm.onsubmit = null;
+      proofForm.removeEventListener("submit", submitProof);
+      proofForm.addEventListener("submit", submitProof);
+    }
 
     // Success: WhatsApp + close
     const waBtn = $("mm-whatsapp-support");
@@ -536,7 +687,13 @@
 
     // ── Consultation form ────────────────────────────────────────────────────
     const consultForm = $("mm-consult-form");
-    if (consultForm) consultForm.addEventListener("submit", submitConsultation);
+    const consultBtn = $("mm-submit-consult");
+    if (consultBtn) consultBtn.onclick = null;
+    if (consultForm) {
+      consultForm.onsubmit = null;
+      consultForm.removeEventListener("submit", submitConsultation);
+      consultForm.addEventListener("submit", submitConsultation);
+    }
 
     const consultWa = $("mm-consult-whatsapp");
     if (consultWa) consultWa.addEventListener("click", consultWhatsApp);
@@ -557,7 +714,7 @@
 
   // Run after DOM is ready
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   } else {
     init();
   }

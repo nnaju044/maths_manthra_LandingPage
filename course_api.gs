@@ -98,10 +98,14 @@ function createLead(data) {
     sheet.setColumnWidth(8, 180);
   }
 
-  // Generate sequential Lead ID
+  // Use leadId provided by frontend, or fallback to sequential Lead ID
   const lastRow = sheet.getLastRow();
   const seq     = lastRow; // row 1 = header, so seq = count of leads already
-  const leadId  = "MM" + String(seq).padStart(4, "0");
+  const leadId  = (data && data.leadId && String(data.leadId).trim())
+                  ? String(data.leadId).trim()
+                  : ("MM" + String(seq).padStart(4, "0"));
+
+  Logger.log("Creating Lead: Lead ID=" + leadId + ", Name=" + data.name + ", Course=" + data.course);
 
   sheet.appendRow([
     leadId,
@@ -120,16 +124,68 @@ function createLead(data) {
 
 // ── Payment Proof ─────────────────────────────────────────────────────────────
 function savePaymentProof(data) {
-  // 1. Upload screenshot to Drive
-  const folder  = DriveApp.getFolderById(COURSE_CONFIG.DRIVE_FOLDER_ID);
-  const bytes   = Utilities.base64Decode(data.fileData);
-  const blob    = Utilities.newBlob(bytes, data.fileType, data.fileName);
-  const file    = folder.createFile(blob);
-  file.setName(data.leadId + "_" + data.fileName);
+  Logger.log("Step 1 [GAS]: Starting savePaymentProof for Lead ID: " + data.leadId);
+
+  // 1. Extract and sanitize base64 string
+  let rawBase64 = data.imageBase64 || data.fileData || "";
+  if (typeof rawBase64 === "string" && rawBase64.indexOf(",") > -1) {
+    rawBase64 = rawBase64.split(",")[1];
+  }
+  rawBase64 = String(rawBase64).replace(/\s/g, "");
+
+  if (!rawBase64) {
+    throw new Error("No image base64 data received in savePaymentProof.");
+  }
+  Logger.log("Step 2 [GAS]: imageBase64 received successfully. Length: " + rawBase64.length + " chars");
+
+  // 2. Decode base64 bytes & create blob
+  const fileType      = data.fileType || "image/jpeg";
+  const rawFileName   = data.fileName || "screenshot.jpg";
+  const cleanFileName = (data.leadId || "MM") + "_" + rawFileName;
+
+  const bytes = Utilities.base64Decode(rawBase64);
+  const blob  = Utilities.newBlob(bytes, fileType, cleanFileName);
+  Logger.log("Step 3 [GAS]: Blob created. MIME: " + fileType + ", Size: " + bytes.length + " bytes");
+
+  // 3. Locate or create destination Drive folder
+  let folder;
+  try {
+    if (COURSE_CONFIG.DRIVE_FOLDER_ID && !COURSE_CONFIG.DRIVE_FOLDER_ID.includes("YOUR_")) {
+      folder = DriveApp.getFolderById(COURSE_CONFIG.DRIVE_FOLDER_ID);
+    }
+  } catch (folderErr) {
+    Logger.log("⚠️ Could not open folder by ID (" + COURSE_CONFIG.DRIVE_FOLDER_ID + "): " + folderErr.message);
+  }
+
+  // Graceful fallback: locate or create folder by name in user's Drive
+  if (!folder) {
+    const folderName = "MM_Leads_Payment_Screenshots";
+    const folders = DriveApp.getFoldersByName(folderName);
+    if (folders.hasNext()) {
+      folder = folders.next();
+    } else {
+      folder = DriveApp.createFolder(folderName);
+    }
+    Logger.log("Step 4 [GAS]: Using folder: " + folder.getName() + " (ID: " + folder.getId() + ")");
+  } else {
+    Logger.log("Step 4 [GAS]: Using configured Drive folder: " + folder.getName() + " (ID: " + folder.getId() + ")");
+  }
+
+  // 4. Upload file to Drive & set view permissions
+  const file = folder.createFile(blob);
+  file.setName(cleanFileName);
+
+  try {
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+  } catch (permErr) {
+    Logger.log("⚠️ Warning setting file sharing permission: " + permErr.message);
+  }
+
   const fileUrl = file.getUrl();
   const fileId  = file.getId();
+  Logger.log("Step 5 [GAS]: Screenshot uploaded to Drive! File ID: " + fileId + ", URL: " + fileUrl);
 
-  // 2. Append to Payments sheet
+  // 5. Append to Payments sheet
   const ss    = SpreadsheetApp.openById(COURSE_CONFIG.SPREADSHEET_ID);
   let   sheet = ss.getSheetByName(SHEET_PAYMENTS);
 
@@ -142,6 +198,8 @@ function savePaymentProof(data) {
     ]);
     sheet.getRange(1, 1, 1, 9).setFontWeight("bold").setBackground("#1a4731").setFontColor("#ffffff");
     sheet.setFrozenRows(1);
+    sheet.setColumnWidth(1, 120);
+    sheet.setColumnWidth(5, 250);
   }
 
   sheet.appendRow([
@@ -149,34 +207,46 @@ function savePaymentProof(data) {
     data.name   || "",
     data.phone  || "",
     data.amount || "",
-    fileUrl,
-    fileId,
+    fileUrl     || "",
+    fileId      || "",
     "verification_pending",
     "",
     new Date().toISOString(),
   ]);
+  Logger.log("Step 6 [GAS]: Row successfully appended to Payments sheet with Screenshot URL.");
 
-  // 3. Update lead status in Leads sheet
-  _updateLeadStatus(data.leadId, "verification_pending");
+  // 6. Update lead status and screenshot URL in Leads sheet if present
+  _updateLeadStatus(data.leadId, "verification_pending", fileUrl);
 
-  return { success: true, fileUrl, fileId };
+  return { success: true, leadId: data.leadId, fileUrl: fileUrl, fileId: fileId };
 }
 
-// ── Internal: update payment_status column in Leads ───────────────────────────
-function _updateLeadStatus(leadId, newStatus) {
+// ── Internal: update payment_status and screenshot URL column in Leads ─────────
+function _updateLeadStatus(leadId, newStatus, fileUrl) {
   try {
     const ss    = SpreadsheetApp.openById(COURSE_CONFIG.SPREADSHEET_ID);
     const sheet = ss.getSheetByName(SHEET_LEADS);
     if (!sheet) return;
 
     const values = sheet.getDataRange().getValues();
+    if (values.length < 2) return;
+    const headers = values[0];
+
+    const statusColIndex     = headers.indexOf("Payment Status") + 1;
+    const screenshotColIndex = headers.findIndex(h => String(h).toLowerCase().includes("screenshot")) + 1;
+
     for (let i = 1; i < values.length; i++) {
-      if (values[i][0] === leadId) {
-        sheet.getRange(i + 1, 9).setValue(newStatus); // Column I = Payment Status
+      if (String(values[i][0]).trim() === String(leadId).trim()) {
+        if (statusColIndex > 0) {
+          sheet.getRange(i + 1, statusColIndex).setValue(newStatus);
+        }
+        if (screenshotColIndex > 0 && fileUrl) {
+          sheet.getRange(i + 1, screenshotColIndex).setValue(fileUrl);
+        }
         break;
       }
     }
   } catch (err) {
-    console.error("_updateLeadStatus error:", err.message);
+    Logger.log("⚠️ _updateLeadStatus warning: " + err.message);
   }
 }
