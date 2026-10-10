@@ -9,7 +9,7 @@
   // API endpoint configuration
   const API_ENDPOINT = (window.MM_CONFIG && window.MM_CONFIG.AI_API_URL)
     ? window.MM_CONFIG.AI_API_URL
-    : "http://localhost:4000/api/chat";
+    : "https://mathsmanthralandingpage-production.up.railway.app/api/chat";
 
   // Founder avatar URL
   const AVATAR_URL = "/mathsmanthra-ai-assistant/public/images/smija/idle.png";
