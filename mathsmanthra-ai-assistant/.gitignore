@@ -1,0 +1,21 @@
+gitignore
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+
+# Coverage
+coverage/
+
+# Build output
+dist/
