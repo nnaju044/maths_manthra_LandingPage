@@ -5,16 +5,15 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <title>MathsManthra Academy | Master AI &amp; Digital Marketing for Educators</title>
+    <title>Edupreneur Mentorship | MathsManthra Academy</title>
+    <meta name="description"
+        content="From Teacher to Edupreneur. Build, Brand & Scale Your Own Educational Empire with MathsManthra Academy's 1-Month Intensive Program." />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
     <!-- Material Symbols Outlined -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
@@ -26,30 +25,33 @@
             theme: {
                 extend: {
                     "colors": {
-                        "primary": "#003371",
+                        "primary": "#071944",
+                        "navy": "#071944",
+                        "gold": "#B87916",
+                        "gold-light": "#fef7ed",
                         "surface-container-high": "#e6e8ea",
                         "tertiary-container": "#704000",
-                        "on-primary-fixed-variant": "#1d4585",
+                        "on-primary-fixed-variant": "#071944",
                         "inverse-surface": "#2d3133",
                         "on-secondary-container": "#713b00",
                         "secondary-fixed-dim": "#ffb77c",
                         "surface-bright": "#f7f9fb",
-                        "on-primary-fixed": "#001a41",
+                        "on-primary-fixed": "#071944",
                         "on-secondary-fixed-variant": "#6d3900",
                         "primary-fixed-dim": "#adc6ff",
                         "on-tertiary-fixed-variant": "#693c00",
-                        "surface-tint": "#395d9e",
+                        "surface-tint": "#071944",
                         "tertiary-fixed-dim": "#feb872",
                         "tertiary-fixed": "#ffdcbd",
                         "surface-variant": "#e0e3e5",
                         "primary-fixed": "#d8e2ff",
                         "on-tertiary": "#ffffff",
                         "error-container": "#ffdad6",
-                        "secondary": "#904d00",
+                        "secondary": "#B87916",
                         "error": "#ba1a1a",
                         "on-surface-variant": "#434750",
                         "on-primary": "#ffffff",
-                        "secondary-container": "#ffa452",
+                        "secondary-container": "#B87916",
                         "on-surface": "#191c1e",
                         "on-primary-container": "#9cbcff",
                         "on-error": "#ffffff",
@@ -181,9 +183,93 @@
                 border-right: 1px solid rgba(0, 0, 0, 0.06);
             }
 
-            .floating-whatsapp {
+            .mm-chat-launcher {
                 right: calc(50% - 240px + 1rem) !important;
             }
+
+            .mm-chat-panel {
+                right: calc(50% - 240px + 1rem) !important;
+                width: 380px !important;
+            }
+        }
+
+        /* MathsManthra AI Assistant Chatbot Styles */
+        .mm-chat-launcher {
+            right: 1rem;
+            bottom: 6rem;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 10px 25px -4px rgba(0, 51, 113, 0.35), 0 4px 10px -2px rgba(0, 0, 0, 0.12);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        }
+
+        .mm-chat-launcher:hover {
+            transform: scale(1.08);
+            box-shadow: 0 14px 30px -2px rgba(0, 51, 113, 0.45), 0 6px 14px -2px rgba(0, 0, 0, 0.18);
+        }
+
+        .mm-chat-launcher:active {
+            transform: scale(0.94);
+        }
+
+        /* Pulse effect every few seconds */
+        @keyframes mmLauncherPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 51, 113, 0.5), 0 10px 25px -4px rgba(0, 51, 113, 0.35);
+            }
+
+            40% {
+                box-shadow: 0 0 0 12px rgba(0, 51, 113, 0), 0 14px 30px -4px rgba(0, 51, 113, 0.45);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 51, 113, 0), 0 10px 25px -4px rgba(0, 51, 113, 0.35);
+            }
+        }
+
+        .mm-pulse-animation {
+            animation: mmLauncherPulse 3.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+        }
+
+        /* Chat Panel Positioning and Animation */
+        .mm-chat-panel {
+            position: fixed;
+            z-index: 55;
+            bottom: calc(6rem + 72px);
+            right: 1rem;
+            width: calc(100vw - 2rem);
+            max-width: 380px;
+            height: 550px;
+            max-height: calc(100dvh - 180px);
+            border-radius: 20px;
+            transform-origin: bottom right;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s;
+        }
+
+        .mm-chat-panel.hidden-state {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.95);
+        }
+
+        .mm-chat-panel.open-state {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        #smijaAvatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid white;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -192,677 +278,896 @@
     <!-- Mobile Viewport Shell (Max 480px, centered on larger screens) -->
     <div
         class="app-container relative w-full max-w-[480px] mx-auto min-h-screen bg-surface-container-lowest flex flex-col pb-36">
-        <!-- TOP APP BAR (Shared Component Execution) -->
+        <!-- TOP APP BAR -->
         <header
-            class="sticky-header fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-margin-mobile h-16 w-full max-w-[480px] mx-auto bg-surface-container-lowest/95 backdrop-blur-md shadow-sm">
-            <div class="flex items-center gap-2">
-                <img src="public/image/apple-touch-icon.png" alt="MathsManthra Academy"
-                    class="h-8 w-8 object-contain" />
-                <span
-                    class="text-headline-sm font-headline-sm text-primary-container font-extrabold tracking-tight">MathsManthra</span>
+            class="sticky-header fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-margin-mobile h-16 w-full max-w-[480px] mx-auto bg-surface-container-lowest/95 backdrop-blur-md shadow-sm border-b border-[#071944]/10">
+            <div class="flex items-center gap-2.5">
+                <img src="/mathsmanthra-ai-assistant/public/images/LOGO.jpg" alt="MathsManthra Academy"
+                    class="h-9 w-9 object-contain rounded-lg" />
+                <div class="flex flex-col">
+                    <span class="text-sm font-extrabold text-[#071944] leading-tight tracking-tight">MathsManthra
+                        Academy</span>
+                    <span class="text-[10px] font-bold text-[#B87916] uppercase tracking-wider">
+                        Edupreneur</span>
+                </div>
             </div>
-            <button aria-label="Share"
+            <button aria-label="Share" id="mm-share-btn"
                 class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant flex items-center justify-center active:scale-95 duration-150">
                 <span class="material-symbols-outlined text-xl" data-icon="share">share</span>
             </button>
         </header>
+
         <!-- CONTENT CANVAS -->
         <main class="w-full pt-20 flex flex-col">
             <!-- SECTION 1: HEADER & HERO -->
             <section class="px-margin-mobile flex flex-col items-center pt-2 pb-6">
-                <!-- Urgency Pill -->
+                <!-- Brand Mission Statement Banner -->
                 <div
-                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed border border-secondary-container/40 shadow-sm mb-3">
-                    <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
-                    <span class="font-label-sm text-label-sm">🔥 Next Cohort Starts This Monday • Only 8 Seats
-                        Left</span>
+                    class="w-full bg-gradient-to-r from-[#071944] via-[#0d2a6b] to-[#071944] text-white py-2 px-3.5 rounded-xl text-center mb-3.5 shadow-sm border border-[#B87916]/40">
+                    <p
+                        class="text-[11px] font-extrabold tracking-wider text-[#ffdca8] uppercase flex items-center justify-center gap-1.5">
+                        <span>✨</span>
+                        <span>“Better Teachers… Bigger Impact!”</span>
+                        <span>✨</span>
+                    </p>
                 </div>
-                <!-- Catchy Headline -->
-                <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary-container text-center px-1">
-                    Transform Your Teaching Career with AI &amp; Digital Marketing
+
+                <!-- Course Number & Duration Badge -->
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B87916]/10 text-[#B87916] border border-[#B87916]/30 shadow-xs mb-3">
+                    <span class="w-2 h-2 rounded-full bg-[#B87916] animate-pulse"></span>
+                    <span class="font-label-sm text-label-sm font-bold tracking-wide uppercase">
+                        1-Month Intensive Program • Limited Seats Only
+                    </span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1
+                    class="font-headline-xl-mobile text-headline-xl-mobile text-[#071944] text-center font-extrabold px-1 leading-tight tracking-tight">
+                    From Teacher to Edupreneur.
                 </h1>
-                <!-- Subheadline -->
-                <p class="font-body-md text-body-md text-on-surface-variant text-center mt-2.5 px-3">
-                    Learn AI tools, Digital Marketing, Student Acquisition Systems, and Teacher Branding.
+
+                <!-- Supporting Headline -->
+                <p
+                    class="font-headline-sm text-headline-sm text-[#B87916] text-center font-bold mt-2 px-2 leading-snug">
+                    Build, Brand &amp; Scale Your Own Educational Empire!
                 </p>
+
+                <p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-2 px-3 leading-relaxed">
+                    A complete 1-month intensive mentorship designed to transform passionate educators into thriving,
+                    independent academy founders.
+                </p>
+
                 <!-- Hero Graphic Container -->
                 <div
-                    class="relative w-full mt-5 rounded-3xl overflow-hidden bg-gradient-to-b from-primary-fixed/40 to-surface-container-low p-2 border border-outline-variant/40 shadow-md">
+                    class="relative w-full mt-5 rounded-3xl overflow-hidden bg-gradient-to-b from-[#071944]/15 via-[#B87916]/10 to-surface-container-low p-2 border border-[#B87916]/30 shadow-md">
                     <div
                         class="relative rounded-2xl overflow-hidden bg-surface-container-lowest aspect-square max-h-[320px] w-full">
-                        <img alt="Modern Indian female educator utilizing AI laptop" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD02WdAbdC5irCceJr9YZTGdj5t870qklmgP_a1LfgE9fxLvY6J0x4Q5Qn8OnwTd1_xNO3C0IKXPr7kJimVrTQIBd51hEXLSlVnfoaU_-6CMxmm_m4R2Cb148Gk7yZTLiahKOrqliDhCW3O7dOZyPVcjqbrWnSrIwr-aTDKnofL6mePshJGgeqLd34yAcDq0D4tk1BSirsHhEb9GihV1elT8Wr9gOT0HqDQLIvCO3hFnYDFIUJT9tU" />
+                        <img alt="Vikram Sundaram - MathsManthra Lead Mentor" class="w-full h-full object-cover"
+                            src="/mathsmanthra-ai-assistant/public/images/Smija_carousal.png" />
                         <!-- Floating Micro-badge 1 -->
                         <div
-                            class="absolute top-3 left-3 bg-surface-container-lowest/95 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-outline-variant/30 flex items-center gap-1.5 animate-bounce duration-1000">
-                            <span class="text-sm">✨</span>
-                            <span class="font-label-sm text-label-sm text-primary-container font-bold">10x Lesson Prep
-                                Speed</span>
+                            class="absolute top-3 left-3 bg-[#071944]/95 text-white backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-[#B87916]/40 flex items-center gap-1.5">
+                            <span class="text-sm">👑</span>
+                            <span class="font-label-sm text-label-sm font-bold text-[#ffdca8]">Edupreneur
+                                Mentorship</span>
                         </div>
                         <!-- Floating Micro-badge 2 -->
                         <div
-                            class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-outline-variant/30 flex items-center gap-1.5">
-                            <span class="text-sm">🎯</span>
-                            <span class="font-label-sm text-label-sm text-secondary font-bold">50+
-                                Inquiries/Month</span>
+                            class="absolute bottom-3 right-3 bg-white/95 text-[#071944] backdrop-blur-md px-3 py-1.5 rounded-xl shadow-lg border border-[#B87916]/40 flex items-center gap-1.5">
+                            <span class="text-sm">⭐</span>
+                            <span class="font-label-sm text-label-sm font-bold text-[#B87916]">1-Month Intensive</span>
                         </div>
                     </div>
                 </div>
+
                 <!-- Trust Badges 2x2 Grid -->
-                <div class="grid grid-cols-2 gap-2.5 w-full mt-5">
+                <div class="grid grid-cols-2 gap-2.5 w-full mt-4">
                     <div
                         class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/40">
-                        <span class="material-symbols-outlined text-primary-container text-lg" data-icon="check_circle"
-                            style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                        <span class="font-label-sm text-label-sm text-on-surface font-semibold">Live Training</span>
-                    </div>
-                    <div
-                        class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/40">
-                        <span class="material-symbols-outlined text-primary-container text-lg" data-icon="verified"
+                        <span class="material-symbols-outlined text-[#B87916] text-lg" data-icon="verified"
                             style="font-variation-settings: 'FILL' 1;">verified</span>
-                        <span class="font-label-sm text-label-sm text-on-surface font-semibold">Certificate
-                            Included</span>
+                        <span class="font-label-sm text-label-sm text-[#071944] font-bold">1-Month Intensive</span>
                     </div>
                     <div
                         class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/40">
-                        <span class="material-symbols-outlined text-primary-container text-lg" data-icon="groups"
-                            style="font-variation-settings: 'FILL' 1;">groups</span>
-                        <span class="font-label-sm text-label-sm text-on-surface font-semibold">Community Support</span>
+                        <span class="material-symbols-outlined text-[#B87916] text-lg" data-icon="workspace_premium"
+                            style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                        <span class="font-label-sm text-label-sm text-[#071944] font-bold">Certificate Included</span>
                     </div>
                     <div
                         class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/40">
-                        <span class="material-symbols-outlined text-primary-container text-lg" data-icon="psychology"
-                            style="font-variation-settings: 'FILL' 1;">psychology</span>
-                        <span class="font-label-sm text-label-sm text-on-surface font-semibold">Practical
-                            Learning</span>
+                        <span class="material-symbols-outlined text-[#B87916] text-lg" data-icon="support_agent"
+                            style="font-variation-settings: 'FILL' 1;">support_agent</span>
+                        <span class="font-label-sm text-label-sm text-[#071944] font-bold">Weekly 1:1 Mentoring</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/40">
+                        <span class="material-symbols-outlined text-[#B87916] text-lg" data-icon="all_inclusive"
+                            style="font-variation-settings: 'FILL' 1;">all_inclusive</span>
+                        <span class="font-label-sm text-label-sm text-[#071944] font-bold">6-Months Recordings</span>
                     </div>
                 </div>
+
+                <!-- Pricing Callout Banner in Hero -->
+                <div
+                    class="w-full mt-4 p-3 rounded-2xl bg-amber-50/70 border border-[#B87916]/30 flex items-center justify-between">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs line-through text-gray-400 font-semibold">₹9,999</span>
+                            <span class="text-xl font-extrabold text-[#071944]">₹5,999</span>
+                            <span
+                                class="bg-[#B87916] text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">40%
+                                OFF</span>
+                        </div>
+                        <p class="text-[11px] text-[#B87916] font-medium mt-0.5">Limited Seats Only • Comprehensive
+                            1-Month Program</p>
+                    </div>
+                </div>
+
                 <!-- Primary Conversion Actions -->
-                <div class="w-full mt-5 flex flex-col gap-2.5">
+                <div class="w-full mt-3.5 flex flex-col gap-2.5">
                     <button data-mm-enroll
-                        class="w-full py-4 px-6 rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg text-center shadow-lg shadow-secondary/30 active:scale-95 transition-transform flex items-center justify-center gap-2">
-                        <span>Enroll Now - Just ₹999</span>
+                        class="w-full py-4 px-6 rounded-xl bg-[#071944] hover:bg-[#0c2b75] text-[#ffdca8] font-label-lg text-label-lg text-center shadow-lg shadow-[#071944]/30 active:scale-95 transition-transform flex items-center justify-center gap-2 border border-[#B87916]/40 cursor-pointer">
+                        <span class="font-extrabold tracking-wide">Enroll Now — ₹5,999</span>
                         <span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
                     </button>
                     <button data-mm-consult
-                        class="w-full py-3 px-6 rounded-xl border-2 border-primary-container text-primary-container font-label-md text-label-md text-center bg-transparent active:scale-95 transition-transform">
-                        Book Free Consultation
+                        class="w-full py-3.5 px-6 rounded-xl border-2 border-[#234a8a] text-[#234a8a] font-label-md text-label-md text-center bg-blue-50/50 hover:bg-blue-50 active:scale-95 transition-all flex items-center justify-center gap-2 font-bold cursor-pointer">
+                        <span class="material-symbols-outlined text-xl text-[#234a8a]"
+                            data-icon="support_agent">support_agent</span>
+                        <span>Book Free Consultation</span>
                     </button>
+
                 </div>
             </section>
-            <!-- SECTION 2: WHY TEACHERS CHOOSE MATHSMANTHRA -->
+
+            <!-- MOTIVATIONAL VISION BANNER -->
+            <section class="px-margin-mobile py-2">
+                <div
+                    class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#071944] via-[#0d2a6b] to-[#071944] text-white text-center shadow-xl border-2 border-[#B87916]/40 relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-[#B87916]/20 rounded-full blur-xl"></div>
+                    <div class="text-[#B87916] text-3xl font-serif leading-none mb-1">“</div>
+                    <p
+                        class="font-headline-sm text-[16px] leading-snug font-extrabold text-[#ffdca8] tracking-wide px-1">
+                        Build your dream. Lead your academy. Change lives. Leave a legacy.
+                    </p>
+                    <p class="text-[11px] uppercase tracking-widest text-white/60 font-semibold mt-2.5">
+                        — MathsManthra Mentorship Vision
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION 2: WHO IS THIS FOR? -->
             <section class="px-margin-mobile py-8 bg-surface-container-low/60 border-y border-outline-variant/30">
                 <div class="text-center mb-6">
                     <div
-                        class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold tracking-wider mb-1">
-                        EXCELLENCE IN PEDAGOGY
+                        class="inline-flex items-center gap-1 text-[#B87916] font-label-sm text-label-sm font-bold tracking-wider mb-1 uppercase">
+                        TARGET AUDIENCE
                     </div>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container">Why Teachers
-                        Choose MathsManthra</h2>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">Built exclusively for educators,
-                        tutors &amp; academy founders</p>
-                </div>
-                <div class="grid grid-cols-1 gap-3.5">
-                    <!-- Card 1 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-primary-fixed flex items-center justify-center shrink-0 text-primary-container">
-                            <span class="material-symbols-outlined text-2xl" data-icon="smart_toy">smart_toy</span>
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-primary-container">AI Tools Training</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
-                                Automate lesson plans, question papers, PPTs in 30 seconds with ChatGPT &amp; AI
-                                prompts.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-secondary-fixed flex items-center justify-center shrink-0 text-secondary">
-                            <span class="material-symbols-outlined text-2xl" data-icon="trending_up">trending_up</span>
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-primary-container">Student Growth Systems
-                            </h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
-                                Fill tuition batches without depending on word-of-mouth or third-party agencies.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-primary-fixed flex items-center justify-center shrink-0 text-primary-container">
-                            <span class="material-symbols-outlined text-2xl" data-icon="ads_click">ads_click</span>
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-primary-container">Digital Marketing</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
-                                Run simple high-ROI Instagram &amp; WhatsApp campaigns on a budget.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-secondary-fixed flex items-center justify-center shrink-0 text-secondary">
-                            <span class="material-symbols-outlined text-2xl"
-                                data-icon="military_tech">military_tech</span>
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-primary-container">Teacher Branding</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
-                                Establish yourself as an authority educator on social media.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- SECTION 3: PROBLEM VS SOLUTION -->
-            <section class="px-margin-mobile py-8">
-                <div class="text-center mb-6">
-                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">THE
-                        TRANSFORMATION</span>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container mt-1">From
-                        Struggling Teacher to Modern Educator</h2>
-                </div>
-                <div class="flex flex-col gap-4">
-                    <!-- Before Card -->
-                    <div class="p-5 rounded-2xl bg-error-container/20 border border-error/20">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="material-symbols-outlined text-error" data-icon="cancel">cancel</span>
-                            <h3 class="font-headline-sm text-headline-sm text-error">The Conventional Way</h3>
-                        </div>
-                        <ul class="space-y-2.5">
-                            <li class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface">
-                                <span class="text-error font-bold">❌</span> No Online Presence
-                            </li>
-                            <li class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface">
-                                <span class="text-error font-bold">❌</span> Difficulty Getting Students
-                            </li>
-                            <li class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface">
-                                <span class="text-error font-bold">❌</span> No Marketing Knowledge
-                            </li>
-                            <li class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface">
-                                <span class="text-error font-bold">❌</span> Limited Technology Skills
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- After Card -->
-                    <div
-                        class="p-5 rounded-2xl bg-surface-container-lowest border-2 border-secondary-container shadow-md">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="material-symbols-outlined text-secondary" data-icon="check_circle"
-                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            <h3 class="font-headline-sm text-headline-sm text-primary-container">With MathsManthra</h3>
-                        </div>
-                        <ul class="space-y-2.5">
-                            <li
-                                class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface font-semibold">
-                                <span class="text-secondary font-bold">✅</span> Professional Teacher Brand
-                            </li>
-                            <li
-                                class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface font-semibold">
-                                <span class="text-secondary font-bold">✅</span> Student Lead Generation
-                            </li>
-                            <li
-                                class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface font-semibold">
-                                <span class="text-secondary font-bold">✅</span> AI Productivity Systems
-                            </li>
-                            <li
-                                class="flex items-center gap-2.5 font-body-sm text-body-sm text-on-surface font-semibold">
-                                <span class="text-secondary font-bold">✅</span> Marketing Confidence
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <!-- SECTION 4: COURSE ROADMAP -->
-            <section class="px-margin-mobile py-8 bg-surface-container-low/70 border-y border-outline-variant/30">
-                <div class="text-center mb-6">
-                    <span
-                        class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">ACTION-PACKED
-                        CURRICULUM</span>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container mt-1">Your 5-Day
-                        Transformation Journey</h2>
-                </div>
-                <div class="space-y-3">
-                    <!-- Day 1 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3">
-                        <div
-                            class="px-3 py-1 rounded-xl bg-primary-fixed text-primary-container font-label-md text-label-md shrink-0">
-                            Day 1
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface">AI Foundations &amp; ChatGPT
-                                for Teachers</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Automate customized
-                                quizzes, diagnostic assessments, and lesson blueprints.</p>
-                        </div>
-                    </div>
-                    <!-- Day 2 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3">
-                        <div
-                            class="px-3 py-1 rounded-xl bg-secondary-fixed text-secondary font-label-md text-label-md shrink-0">
-                            Day 2
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Canva &amp; Content Creation
-                                for Social Media</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Design viral carousels,
-                                educational reels, and thumb-stopping posters in minutes.</p>
-                        </div>
-                    </div>
-                    <!-- Day 3 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3">
-                        <div
-                            class="px-3 py-1 rounded-xl bg-primary-fixed text-primary-container font-label-md text-label-md shrink-0">
-                            Day 3
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Digital Marketing Fundamentals
-                                for Coaching</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Define your ideal
-                                student persona, unique pricing strategy, and hyper-local outreach.</p>
-                        </div>
-                    </div>
-                    <!-- Day 4 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3">
-                        <div
-                            class="px-3 py-1 rounded-xl bg-secondary-fixed text-secondary font-label-md text-label-md shrink-0">
-                            Day 4
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Meta Ads &amp; Student Lead
-                                Generation</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Launch low-cost Facebook
-                                &amp; Instagram campaigns to generate quality student inquiries.</p>
-                        </div>
-                    </div>
-                    <!-- Day 5 -->
-                    <div
-                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3">
-                        <div
-                            class="px-3 py-1 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md shrink-0">
-                            Day 5
-                        </div>
-                        <div>
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Teacher Branding, Pricing
-                                &amp; Growth Blueprint</h3>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Position yourself as a
-                                regional authority with live consultation scripts and closing tactics.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- SECTION 5: TESTIMONIALS -->
-            <section class="px-margin-mobile py-8">
-                <div class="text-center mb-6">
-                    <span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">REAL
-                        REVIEWS</span>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container mt-1">Success
-                        Stories</h2>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Over 5,000+ educators transformed
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold">
+                        Who Is This For?
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                        Designed for dedicated educators ready to step into leadership and ownership:
                     </p>
                 </div>
-                <div class="flex flex-col gap-4">
-                    <!-- Testimonial 1 -->
-                    <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm">
-                        <div class="flex items-center gap-1 text-secondary mb-2">
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
+                <div class="grid grid-cols-1 gap-3">
+                    <!-- Item 1 -->
+                    <div
+                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-xs flex items-start gap-3.5">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[#071944]/10 text-[#071944] flex items-center justify-center shrink-0 font-bold">
+                            <span class="material-symbols-outlined text-xl">school</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface italic">
-                            "Filled my new batch of 25 students within 10 days of applying the Instagram ad template!"
-                        </p>
-                        <div class="mt-3 flex items-center justify-between border-t border-outline-variant/20 pt-2.5">
-                            <div>
-                                <p class="font-label-md text-label-md text-primary-container font-bold">Priya Sharma</p>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant">High School Math Tutor,
-                                    Delhi</p>
-                            </div>
-                            <span
-                                class="inline-flex items-center gap-1 text-xs text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full font-semibold">
-                                Verified
-                            </span>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">School Teachers &amp;
+                                Coaches</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+                                Ready to transition from fixed salaries to owning a respected educational brand and
+                                personal intellectual property.
+                            </p>
                         </div>
                     </div>
-                    <!-- Testimonial 2 -->
-                    <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm">
-                        <div class="flex items-center gap-1 text-secondary mb-2">
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
+                    <!-- Item 2 -->
+                    <div
+                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-xs flex items-start gap-3.5">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[#B87916]/15 text-[#B87916] flex items-center justify-center shrink-0 font-bold">
+                            <span class="material-symbols-outlined text-xl">menu_book</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface italic">
-                            "AI saved me 15 hours every week on worksheet and test paper creation."
-                        </p>
-                        <div class="mt-3 flex items-center justify-between border-t border-outline-variant/20 pt-2.5">
-                            <div>
-                                <p class="font-label-md text-label-md text-primary-container font-bold">Rajesh Iyer</p>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant">Physics Tuition Center
-                                    Owner, Bangalore</p>
-                            </div>
-                            <span
-                                class="inline-flex items-center gap-1 text-xs text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full font-semibold">
-                                Verified
-                            </span>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">College Lecturers
+                                &amp; Academicians</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+                                Seeking to monetize specialized domain expertise through high-value masterclasses and
+                                structured online courses.
+                            </p>
                         </div>
                     </div>
-                    <!-- Testimonial 3 -->
-                    <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm">
-                        <div class="flex items-center gap-1 text-secondary mb-2">
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined text-sm" data-icon="star"
-                                style="font-variation-settings: 'FILL' 1;">star</span>
+                    <!-- Item 3 -->
+                    <div
+                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-xs flex items-start gap-3.5">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[#071944]/10 text-[#071944] flex items-center justify-center shrink-0 font-bold">
+                            <span class="material-symbols-outlined text-xl">groups</span>
                         </div>
-                        <p class="font-body-md text-body-md text-on-surface italic">
-                            "Went from struggling for inquiries to building my own verified teacher brand."
-                        </p>
-                        <div class="mt-3 flex items-center justify-between border-t border-outline-variant/20 pt-2.5">
-                            <div>
-                                <p class="font-label-md text-label-md text-primary-container font-bold">Ananya Mukherjee
-                                </p>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant">Independent Science
-                                    Educator, Kolkata</p>
-                            </div>
-                            <span
-                                class="inline-flex items-center gap-1 text-xs text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full font-semibold">
-                                Verified
-                            </span>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">Tuition Teachers
+                                &amp; Educators</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+                                Looking to expand far beyond local neighborhood limits into scalable, recurring
+                                nationwide student cohorts.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div
+                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-xs flex items-start gap-3.5">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[#B87916]/15 text-[#B87916] flex items-center justify-center shrink-0 font-bold">
+                            <span class="material-symbols-outlined text-xl">rocket_launch</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">Aspiring Edupreneurs
+                                &amp; Coaches</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+                                Wanting a proven, step-by-step roadmap to validate, launch, and automate a coaching
+                                business without trial and error.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div
+                        class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-xs flex items-start gap-3.5">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-[#071944]/10 text-[#071944] flex items-center justify-center shrink-0 font-bold">
+                            <span class="material-symbols-outlined text-xl">domain</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">Anyone Who Wants to
+                                Build Their Own Academy</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+                                Driven by pedagogical impact and determined to build a lasting, sustainable, and legally
+                                protected educational enterprise.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- SECTION 6: TRAINER PROFILE -->
+
+            <!-- SECTION 3: CURRICULUM SECTION -->
+            <section class="px-margin-mobile py-8 scroll-mt-20" id="curriculum">
+                <div class="text-center mb-6">
+                    <span
+                        class="font-label-sm text-label-sm text-[#B87916] font-bold uppercase tracking-wider">ACTION-PACKED
+                        CURRICULUM</span>
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold mt-1">
+                        1-Month Intensive Syllabus
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                        A systematic modular journey from teacher to educational business leader:
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Module Group 1 -->
+                    <!-- <div class="p-5 rounded-2xl bg-surface-container-lowest border-2 border-[#B87916]/30 shadow-sm">
+                        <div class="flex items-center gap-2.5 pb-3 border-b border-outline-variant/20">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-[#071944] text-[#ffdca8] flex items-center justify-center font-bold text-xs shrink-0">01</span>
+                            <div>
+                                <span
+                                    class="text-[10px] uppercase tracking-wider font-extrabold text-[#B87916]">Foundation
+                                    Modules</span>
+                                <h3 class="font-headline-sm text-headline-sm text-[#071944] font-extrabold">Everything
+                                    from Courses 1 &amp; 2</h3>
+                            </div>
+                        </div>
+                        <ul class="mt-3.5 space-y-2">
+                            <li class="flex items-start gap-2 text-[13px] text-on-surface">
+                                <span class="text-[#B87916] font-bold text-sm">✔</span>
+                                <span><strong>Everything from Course 1 &amp; 2:</strong> Complete access to all
+                                    foundational tools, AI prompt kits, Canva creative workflows, and digital marketing
+                                    foundations.</span>
+                            </li>
+                        </ul>
+                    </div> -->
+
+                    <!-- Module Group 2 -->
+                    <div class="p-5 rounded-2xl bg-surface-container-lowest border-2 border-[#071944]/20 shadow-sm">
+                        <div class="flex items-center gap-2.5 pb-3 border-b border-outline-variant/20">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-[#B87916] text-white flex items-center justify-center font-bold text-xs shrink-0">02</span>
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider font-extrabold text-[#071944]">Core
+                                    Business Blueprint</span>
+                                <h3 class="font-headline-sm text-headline-sm text-[#071944] font-extrabold">Build and
+                                    Grow Your Educational Business</h3>
+                            </div>
+                        </div>
+                        <div class="mt-3.5 grid grid-cols-1 gap-2">
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Build Your Educational Brand</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Create Your Own Online Academy</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Team Building</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Business Strategy</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>AI & Tech Integration</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Sales System</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Funnels &amp; Marketing</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Leadership</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#071944] font-bold">▸</span>
+                                <span>Scale Your Academy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module Group 3 -->
+                    <div class="p-5 rounded-2xl bg-surface-container-lowest border-2 border-[#071944]/20 shadow-sm">
+                        <div class="flex items-center gap-2.5 pb-3 border-b border-outline-variant/20">
+                            <span
+                                class="w-8 h-8 rounded-lg bg-[#071944] text-[#ffdca8] flex items-center justify-center font-bold text-xs shrink-0">03</span>
+                            <div>
+                                <span class="text-[10px] uppercase tracking-wider font-extrabold text-[#B87916]">Legal
+                                    &amp; Compliance Setup</span>
+                                <h3 class="font-headline-sm text-headline-sm text-[#071944] font-extrabold">Legal and
+                                    Business Fundamentals</h3>
+                            </div>
+                        </div>
+                        <div class="mt-3.5 grid grid-cols-1 gap-2">
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#B87916] font-bold">⚖️</span>
+                                <span>Business Registration</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#B87916] font-bold">⚖️</span>
+                                <span>GST Basics</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#B87916] font-bold">⚖️</span>
+                                <span>MSME Registration</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#B87916] font-bold">⚖️</span>
+                                <span>Trademark Basics</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#B87916] font-bold">⚖️</span>
+                                <span>Copyright</span>
+                            </div>
+
+                            <div
+                                class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low/70 text-[13px] font-medium text-on-surface">
+                                <span class="text-[#B87916] font-bold">⚖️</span>
+                                <span>Agreements &amp; Policies</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: EXPECTED OUTCOMES SECTION -->
+            <section class="px-margin-mobile py-8 bg-surface-container-low/60 border-y border-outline-variant/30">
+                <div class="text-center mb-6">
+                    <span class="font-label-sm text-label-sm text-[#B87916] font-bold uppercase tracking-wider">INTENDED
+                        PROGRAM OUTCOMES</span>
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold mt-1">
+                        What You Can Achieve
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                        Transformational milestones targeted by this 1-month intensive journey:
+                    </p>
+                </div>
+                <div class="flex flex-col gap-3.5">
+                    <!-- Outcome 1 -->
+                    <div
+                        class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-[#071944] text-[#ffdca8] flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-2xl">verified_user</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">Build and Scale Your
+                                Own Educational Brand</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                                Establish recognized authority and market credibility in your teaching subject,
+                                positioning yourself as an undisputed academy leader.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Outcome 2 -->
+                    <div
+                        class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-[#B87916] text-white flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-2xl">public</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">Impact Thousands of
+                                Students</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                                Expand your teaching beyond geographical barriers to mentor, guide, and transform
+                                students across India with digital scale.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Outcome 3 -->
+                    <div
+                        class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-start gap-3.5">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-[#071944] text-[#ffdca8] flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-2xl">savings</span>
+                        </div>
+                        <div>
+                            <h3 class="font-headline-sm text-headline-sm text-[#071944] font-bold">Create Freedom and
+                                Financial Success</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+                                Develop repeatable sales funnels, automated systems, and high-margin online offerings
+                                that foster genuine professional independence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: PROGRAM BENEFITS / INCLUSIONS SECTION -->
+            <section class="px-margin-mobile py-8">
+                <div class="text-center mb-6">
+                    <span
+                        class="font-label-sm text-label-sm text-emerald-700 font-bold uppercase tracking-wider">PROGRAM
+                        INCLUSIONS</span>
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold mt-1">
+                        Program Inclusions
+                    </h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5">
+                        Everything included when you join — Edupreneur Mentorship:
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 gap-2.5">
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Certificate</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">6-Months Recordings
+                            Access</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Exclusive Premium WhatsApp
+                            Group</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Weekly 1:1
+                            Mentoring</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Assignment Reviews</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Business Templates</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Priority Doubt
+                            Support</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-lowest border border-emerald-500/20 shadow-xs">
+                        <span
+                            class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold shrink-0">✓</span>
+                        <span class="font-body-sm text-body-sm text-on-surface font-semibold">Growth Roadmap</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: LEAD MENTOR PROFILE -->
             <section class="px-margin-mobile py-8 bg-surface-container-low/70 border-y border-outline-variant/30">
                 <div class="text-center mb-6">
-                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">YOUR
+                    <span class="font-label-sm text-label-sm text-[#B87916] font-bold uppercase tracking-wider">YOUR
                         MENTOR</span>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container mt-1">Meet Your
-                        Lead Mentor</h2>
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold mt-1">
+                        Meet Your Lead Mentor
+                    </h2>
                 </div>
                 <div class="p-5 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-md">
                     <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-surface-container">
-                        <img alt="Vikram Sundaram Lead Educator" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb3Y3fzNf022ORjbhp8rfUSmGQPAjyglNlJKyBOvAo3f6VyrEt8_9_lQaeI-GVKKXnNp_WYeAj2rIZ0mD_LhPpStbwwl6FWdgMVSGLRcEmzOg2hvoAT4JFLX0Us0dBE5gQazIN2CcRQDLFlW54slkVhpOwzHuBnMi9SmWmxizr-GG59ZVFe3VEIHu-mDQj6wM8GULaQ52FOF62pLIrvQxWzC86B9Sl1VY2Uod5mlQuGVKT0iq3kuI" />
+                        <img alt="Vikram Sundaram - MathsManthra Lead Mentor" class="w-full h-full object-cover"
+                            src="/mathsmanthra-ai-assistant/public/images/smija.png" />
                         <div
-                            class="absolute bottom-2.5 left-2.5 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1 shadow">
-                            <span class="material-symbols-outlined text-primary-container text-sm" data-icon="verified"
+                            class="absolute bottom-2.5 left-2.5 bg-[#071944]/90 text-[#ffdca8] backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1 shadow">
+                            <span class="material-symbols-outlined text-sm" data-icon="verified"
                                 style="font-variation-settings: 'FILL' 1;">verified</span>
-                            <span class="font-label-sm text-label-sm text-primary-container font-bold">Master
-                                Instructor</span>
+                            <span class="font-label-sm text-label-sm font-bold">Master Mentor</span>
                         </div>
                     </div>
-                    <h3 class="font-headline-md text-headline-md text-primary-container">Vikram Sundaram</h3>
-                    <p class="font-body-sm text-body-sm text-secondary font-semibold">EdTech &amp; Growth Strategist</p>
+                    <h3 class="font-headline-md text-headline-md text-[#071944] font-bold">Smija K S</h3>
+                    <p class="font-body-sm text-body-sm text-[#B87916] font-semibold">Founder, MathsManthra Academy |
+                        EdTech Strategist</p>
                     <div class="mt-4 space-y-2.5 border-t border-outline-variant/30 pt-3.5">
                         <div class="flex items-start gap-2.5">
-                            <span class="material-symbols-outlined text-primary-container text-lg mt-0.5"
+                            <span class="material-symbols-outlined text-[#071944] text-lg mt-0.5"
                                 data-icon="workspace_premium">workspace_premium</span>
-                            <p class="font-body-sm text-body-sm text-on-surface"><strong>Experience:</strong> 10+ Years
-                                in Education &amp; EdTech Marketing</p>
+                            <p class="font-body-sm text-body-sm text-on-surface"><strong>Experience:</strong> 5+ Years
+                                in Education, EdTech Scaling &amp; Teacher Mentorship</p>
                         </div>
                         <div class="flex items-start gap-2.5">
-                            <span class="material-symbols-outlined text-primary-container text-lg mt-0.5"
+                            <span class="material-symbols-outlined text-[#071944] text-lg mt-0.5"
                                 data-icon="groups_2">groups_2</span>
-                            <p class="font-body-sm text-body-sm text-on-surface"><strong>Achievements:</strong> Mentored
-                                5,000+ Teachers across India • Ex-Byju's / Unacademy Trainer</p>
+                            <p class="font-body-sm text-body-sm text-on-surface"><strong>Track Record:</strong> Mentored
+                                1,000+ Educators across India to build independent careers</p>
                         </div>
                         <div class="flex items-start gap-2.5">
-                            <span class="material-symbols-outlined text-primary-container text-lg mt-0.5"
+                            <span class="material-symbols-outlined text-[#071944] text-lg mt-0.5"
                                 data-icon="psychology">psychology</span>
-                            <p class="font-body-sm text-body-sm text-on-surface"><strong>Expertise:</strong> AI in
-                                Classroom, Performance Ads, Personal Branding</p>
+                            <p class="font-body-sm text-body-sm text-on-surface"><strong>Specialization:</strong>
+                                Academy Architecture, Motivational Speaker, Personal Branding &amp; Sales Systems</p>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- SECTION 7: PRICING & EARLY BIRD -->
+
+            <!-- SECTION 7: PRICING AND ENROLLMENT CARD -->
             <section class="px-margin-mobile py-8 scroll-mt-20" id="pricing">
                 <div class="text-center mb-6">
-                    <span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">INVEST
+                    <span class="font-label-sm text-label-sm text-[#B87916] font-bold uppercase tracking-wider">INVEST
                         IN YOUR FUTURE</span>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container mt-1">Join The
-                        Next Batch</h2>
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold mt-1">
+                        Edupreneur Mentorship
+                    </h2>
                 </div>
                 <div
-                    class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-secondary shadow-xl relative overflow-hidden">
+                    class="p-5 rounded-3xl bg-surface-container-lowest border-2 border-[#B87916] shadow-xl relative overflow-hidden">
                     <div
-                        class="absolute -top-1 -right-1 bg-secondary text-on-secondary px-4 py-1.5 rounded-bl-2xl font-label-sm text-label-sm font-bold shadow-sm">
-                        Limited Time 70% Off
+                        class="absolute -top-1 -right-1 bg-[#B87916] text-white px-4 py-1.5 rounded-bl-2xl font-label-sm text-label-sm font-extrabold shadow-sm">
+                        40% OFF
                     </div>
                     <div class="pt-3">
                         <div class="flex items-baseline gap-2">
                             <span
-                                class="font-headline-xl font-headline-xl text-primary-container font-extrabold">₹999</span>
-                            <span class="text-outline-variant line-through font-body-lg text-body-lg">₹3,499</span>
+                                class="font-headline-xl font-headline-xl text-[#071944] font-extrabold text-3xl">₹5,999</span>
+                            <span class="text-slate-400 line-through font-body-lg text-body-lg text-lg">₹9,999</span>
                             <span
-                                class="text-xs font-bold text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded-full">Save
-                                ₹2,500</span>
+                                class="text-xs font-bold text-[#B87916] bg-amber-50 border border-[#B87916]/30 px-2 py-0.5 rounded-full">Save
+                                ₹4,000</span>
                         </div>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Inclusive of GST, tool access
-                            &amp; masterclasses</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 font-medium">
+                            Duration: <strong>1-Month Intensive Program</strong> • Limited Seats Only
+                        </p>
                     </div>
-                    <div class="my-5 border-t border-outline-variant/30 pt-4 space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle"
+
+                    <div class="my-5 border-t border-outline-variant/30 pt-4 space-y-2.5">
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-emerald-600 text-lg" data-icon="check_circle"
                                 style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            <span class="font-body-sm text-body-sm text-on-surface font-medium">5 Days Live Hands-on
-                                Sessions</span>
+                            <span class="font-body-sm text-body-sm text-on-surface font-medium">Everything from Courses
+                                1 &amp; 2 Included</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle"
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-emerald-600 text-lg" data-icon="check_circle"
+                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="font-body-sm text-body-sm text-on-surface font-medium">Weekly 1:1 Mentoring
+                                with Vikram Sundaram</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-emerald-600 text-lg" data-icon="check_circle"
+                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="font-body-sm text-body-sm text-on-surface font-medium">Complete Legal &amp;
+                                Business Frameworks</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-emerald-600 text-lg" data-icon="check_circle"
+                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="font-body-sm text-body-sm text-on-surface font-medium">6-Months Recordings
+                                &amp; Template Access</span>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-emerald-600 text-lg" data-icon="check_circle"
                                 style="font-variation-settings: 'FILL' 1;">check_circle</span>
                             <span class="font-body-sm text-body-sm text-on-surface font-medium">Official Certificate of
                                 Completion</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle"
+                        <div class="flex items-center gap-2.5">
+                            <span class="material-symbols-outlined text-emerald-600 text-lg" data-icon="check_circle"
                                 style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            <span class="font-body-sm text-body-sm text-on-surface font-medium">Lifetime Access to
-                                Educator AI Prompt Library</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle"
-                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            <span class="font-body-sm text-body-sm text-on-surface font-medium">WhatsApp VIP Community
-                                &amp; Doubt Clearing</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-secondary text-lg" data-icon="check_circle"
-                                style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                            <span class="font-body-sm text-body-sm text-on-surface font-medium">Ready-to-use Ad
-                                Templates &amp; Canva Kits</span>
+                            <span class="font-body-sm text-body-sm text-on-surface font-medium">Exclusive Premium
+                                WhatsApp Support Group</span>
                         </div>
                     </div>
+
                     <div class="flex flex-col gap-2.5">
                         <button data-mm-enroll
-                            class="w-full py-4 rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg shadow-lg shadow-secondary/30 active:scale-95 transition-transform flex items-center justify-center gap-2">
+                            class="w-full py-4 rounded-xl bg-[#071944] text-[#ffdca8] font-label-lg text-label-lg shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2 border border-[#B87916]/40 cursor-pointer">
                             <span class="material-symbols-outlined text-xl" data-icon="bolt">bolt</span>
-                            <span>Enroll Now (Fast Filling)</span>
+                            <span class="font-extrabold tracking-wide">Enroll Now — ₹5,999</span>
                         </button>
-                        <button data-mm-enroll
-                            class="w-full py-3 rounded-xl border border-outline text-on-surface-variant font-label-md text-label-md active:scale-95 transition-transform">
-                            Talk To Advisor
+                        <button data-mm-consult
+                            class="w-full py-3.5 rounded-xl border-2 border-[#234a8a] text-[#234a8a] font-label-md text-label-md active:scale-95 transition-transform flex items-center justify-center gap-2 font-bold bg-blue-50/50 hover:bg-blue-50 cursor-pointer">
+                            <span class="material-symbols-outlined text-xl"
+                                data-icon="support_agent">support_agent</span>
+                            <span>Book Free Consultation</span>
                         </button>
+
                     </div>
                 </div>
             </section>
+
             <!-- SECTION 8: FAQ ACCORDION -->
             <section class="px-margin-mobile py-8 bg-surface-container-low/70 border-y border-outline-variant/30">
                 <div class="text-center mb-6">
-                    <span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">HAVE
+                    <span class="font-label-sm text-label-sm text-[#B87916] font-bold uppercase tracking-wider">HAVE
                         QUESTIONS?</span>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary-container mt-1">Frequently
-                        Asked Questions</h2>
+                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-[#071944] font-extrabold mt-1">
+                        Frequently Asked Questions
+                    </h2>
                 </div>
                 <div class="space-y-3">
                     <!-- FAQ 1 -->
                     <details
                         class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 open:shadow-sm">
                         <summary
-                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none">
-                            <span>Who can join?</span>
+                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none font-bold">
+                            <span>What is : Edupreneur Mentorship?</span>
                             <span
                                 class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180"
                                 data-icon="expand_more">expand_more</span>
                         </summary>
                         <p class="font-body-sm text-body-sm text-on-surface-variant mt-2.5 leading-relaxed">
-                            School teachers, home tutors, coaching institute owners, content creators, and edupreneurs
-                            across any subject or curriculum (CBSE, ICSE, State Boards, IB).
+                            It is an intensive 1-Month Mentorship program designed to help teachers, tutors, and coaches
+                            build, brand, and scale their own online academies. It covers everything from curriculum
+                            foundations, AI tools, and sales funnels to company registration and legal compliance.
                         </p>
                     </details>
-                    <!-- FAQ 2 -->
-                    <details
-                        class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 open:shadow-sm">
-                        <summary
-                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none">
-                            <span>Is this beginner friendly?</span>
-                            <span
-                                class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180"
-                                data-icon="expand_more">expand_more</span>
-                        </summary>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-2.5 leading-relaxed">
-                            100% beginner friendly. Designed for Teachers, Students & Parents. Learn practical AI tools,
-                            digital skills, and modern teaching techniques using just your mobile
-                            phone or laptop. Every session is simple, practical, and easy to follow
-                            in Malayalam.
-                        </p>
-                    </details>
+
                     <!-- FAQ 3 -->
                     <details
                         class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 open:shadow-sm">
                         <summary
-                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none">
-                            <span>Will recordings be provided?</span>
+                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none font-bold">
+                            <span>How does the 1-Month program work?</span>
                             <span
                                 class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180"
                                 data-icon="expand_more">expand_more</span>
                         </summary>
                         <p class="font-body-sm text-body-sm text-on-surface-variant mt-2.5 leading-relaxed">
-                            Yes, Enjoy 6 months of access to all recorded sessions, workshop materials, templates,
-                            resources, and downloadable prompt sheets so you can learn at your own pace.
+                            The program spans 1 month with live interactive sessions, practical assignments, weekly 1:1
+                            mentoring reviews, and continuous WhatsApp community support so you apply what you learn at
+                            each step.
                         </p>
                     </details>
                     <!-- FAQ 4 -->
                     <details
                         class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 open:shadow-sm">
                         <summary
-                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none">
-                            <span>Will I get a certificate?</span>
+                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none font-bold">
+                            <span>Are legal and registration topics covered?</span>
                             <span
                                 class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180"
                                 data-icon="expand_more">expand_more</span>
                         </summary>
                         <p class="font-body-sm text-body-sm text-on-surface-variant mt-2.5 leading-relaxed">
-                            Yes, you will receive an official verified completion certificate from MathsManthra Academy
-                            that you can showcase on LinkedIn and resume.
+                            Yes! You will learn the practical fundamentals of Business Registration, GST Basics, MSME
+                            Registration, Trademark Basics, Copyright, Invoicing &amp; Tax Basics, and essential
+                            agreements and policies to safeguard your academy.
                         </p>
                     </details>
                     <!-- FAQ 5 -->
                     <details
                         class="group bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 open:shadow-sm">
                         <summary
-                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none">
-                            <span>How long is the course?</span>
+                            class="flex justify-between items-center font-headline-sm text-headline-sm text-on-surface cursor-pointer list-none font-bold">
+                            <span>Will I get recordings and certification?</span>
                             <span
                                 class="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180"
                                 data-icon="expand_more">expand_more</span>
                         </summary>
                         <p class="font-body-sm text-body-sm text-on-surface-variant mt-2.5 leading-relaxed">
-                            The cohort spans 5 days with 60-minute live interactive evening sessions, followed by live
-                            Q&amp;A and hands-on assignments.
+                            Yes. You get 6-Months Recordings Access to all sessions and downloadable resources, plus an
+                            official verified Certificate of Completion from MathsManthra Academy.
                         </p>
                     </details>
                 </div>
             </section>
+
             <!-- SECTION 9: FINAL CTA -->
             <section class="px-margin-mobile py-10">
                 <div
-                    class="p-6 rounded-3xl bg-primary-container text-on-primary text-center shadow-2xl relative overflow-hidden">
-                    <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-secondary-container/20 rounded-full blur-2xl">
-                    </div>
-                    <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary">
-                        Ready To Grow Your Teaching Career?
+                    class="p-6 rounded-3xl bg-gradient-to-br from-[#071944] via-[#0d2a6b] to-[#071944] text-white text-center shadow-2xl relative overflow-hidden border border-[#B87916]/40">
+                    <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-[#B87916]/20 rounded-full blur-2xl"></div>
+                    <div class="text-[#B87916] text-3xl font-serif leading-none mb-2">“</div>
+                    <h2
+                        class="font-headline-lg-mobile text-headline-lg-mobile text-[#ffdca8] font-extrabold leading-snug">
+                        Build your dream. Lead your academy. Change lives. Leave a legacy.
                     </h2>
-                    <p class="font-body-md text-body-md text-on-primary-container mt-2">
-                        Join hundreds of teachers using AI and Marketing to build their future.
+                    <p class="font-body-sm text-body-sm text-white/80 mt-2 px-2">
+                        Take the step from educator to academy founder with MathsManthra Academy.
                     </p>
                     <div class="mt-6 flex flex-col gap-3">
                         <button data-mm-enroll
-                            class="w-full py-4 rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
-                            <span>Enroll Now</span>
+                            class="w-full py-4 rounded-xl bg-[#B87916] hover:bg-[#a26810] text-white font-label-lg text-label-lg shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2 font-extrabold cursor-pointer">
+                            <span>Enroll Now — ₹5,999 (40% OFF)</span>
                             <span class="material-symbols-outlined text-xl"
                                 data-icon="arrow_forward">arrow_forward</span>
                         </button>
                         <button data-mm-consult
-                            class="w-full py-3 rounded-xl border border-on-primary/40 text-on-primary font-label-md text-label-md hover:bg-white/10 active:scale-95 transition-all">
-                            Book Free Consultation
+                            class="w-full py-3.5 rounded-xl border border-white/60 text-white font-label-md text-label-md hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center gap-2 font-bold cursor-pointer">
+                            <span class="material-symbols-outlined text-xl"
+                                data-icon="support_agent">support_agent</span>
+                            <span>Book Free Consultation</span>
                         </button>
+
                     </div>
                 </div>
             </section>
+
             <!-- FOOTER -->
             <footer class="text-center py-6 border-t border-outline-variant/30 text-on-surface-variant">
-                <p class="font-label-sm text-label-sm">© 2025 MathsManthra Academy. All rights reserved.</p>
-                <p class="font-body-sm text-body-sm text-outline mt-1">Empowering Educators Across India</p>
+                <p class="font-label-sm text-label-sm font-extrabold text-[#071944]">MathsManthra Academy</p>
+                <p class="text-[12px] font-bold text-[#B87916] mt-0.5">“Better Teachers… Bigger Impact!”</p>
+                <p class="font-body-sm text-body-sm text-outline mt-2">© 2025 MathsManthra Academy. All rights reserved.
+                </p>
+                <p class="text-[11px] text-gray-400 mt-1">Contact: +91 75609 08799</p>
             </footer>
         </main>
-        <!-- FLOATING WHATSAPP BUBBLE -->
-        <a aria-label="Chat on WhatsApp"
-            class="floating-whatsapp fixed right-4 bottom-24 z-50 w-12 h-12 rounded-full bg-emerald-600 text-white shadow-xl flex items-center justify-center active:scale-90 transition-transform"
-            href="https://wa.me/" rel="noopener noreferrer" target="_blank">
-            <span class="material-symbols-outlined text-2xl" data-icon="chat">chat</span>
-            <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-secondary rounded-full border-2 border-white"></span>
-        </a>
+        <!-- MATHSMANTHRA AI ASSISTANT CHATBOT PANEL -->
+        <div id="mm-chat-panel"
+            class="mm-chat-panel hidden-state flex flex-col bg-white shadow-2xl border border-outline-variant/30 overflow-hidden"
+            role="dialog" aria-modal="true" aria-labelledby="mm-chat-title">
+            <!-- Header -->
+            <header
+                class="bg-gradient-to-r from-primary to-[#1d4585] text-white px-4 py-3.5 flex items-center justify-between select-none shadow-sm relative">
+                <div class="flex items-center gap-3">
+                    <img id="smijaAvatar" src="/mathsmanthra-ai-assistant/public/images/smija/idle.png"
+                        alt="Smija AI Mentor" />
+                    <div>
+                        <h3 id="mm-chat-title"
+                            class="font-bold text-[14px] leading-tight text-white flex items-center gap-1.5">
+                            MathsManthra AI Mentor
+                            <span
+                                class="bg-emerald-500/25 text-emerald-300 text-[10px] font-semibold px-1.5 py-0.5 rounded-full border border-emerald-400/30">Online</span>
+                        </h3>
+                        <p class="text-white/80 text-[11px] leading-snug mt-0.5">Ask me anything about our programs</p>
+                    </div>
+                </div>
+                <button id="mm-chat-close-btn" type="button" aria-label="Close Chat"
+                    class="w-8 h-8 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">close</span>
+                </button>
+            </header>
+
+            <!-- Messages Section -->
+            <div id="mm-chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#f8fafc] text-sm">
+                <!-- Welcome Bot Message -->
+                <div class="flex items-start gap-2.5">
+                    <img src="/mathsmanthra-ai-assistant/public/images/smija/idle.png" alt="AI Mentor"
+                        class="w-7 h-7 rounded-full object-cover flex-shrink-0 mt-0.5 border border-primary/20 shadow-xs" />
+                    <div
+                        class="max-w-[85%] bg-white text-on-surface border border-outline-variant/30 rounded-2xl rounded-tl-xs p-3.5 text-[13px] leading-relaxed shadow-sm">
+                        <p class="font-bold text-primary mb-1 flex items-center gap-1">
+                            <span>Hellooo!</span> <span>👋🏻</span>
+                        </p>
+                        <p>I am your <strong>MathsManthra AI Mentor</strong>. How can I help you regarding
+                            <strong> Edupreneur Mentorship</strong>?
+                        </p>
+                        <div class="mt-3 pt-2.5 border-t border-slate-100 flex flex-wrap gap-1.5">
+                            <button type="button" data-mm-consult
+                                class="mm-quick-prompt text-[11px] bg-[#234a8a]/10 hover:bg-[#234a8a]/20 text-[#234a8a] font-bold px-2.5 py-1 rounded-full transition-colors border border-[#234a8a]/30 cursor-pointer">
+                                📞 Book Free Consultation
+                            </button>
+                            <button type="button"
+                                class="mm-quick-prompt text-[11px] bg-primary/5 hover:bg-primary/10 text-primary font-medium px-2.5 py-1 rounded-full transition-colors border border-primary/15 cursor-pointer">
+                                What is the program duration?
+                            </button>
+                            <button type="button"
+                                class="mm-quick-prompt text-[11px] bg-primary/5 hover:bg-primary/10 text-primary font-medium px-2.5 py-1 rounded-full transition-colors border border-primary/15 cursor-pointer">
+                                What is the offer fee?
+                            </button>
+                            <button type="button"
+                                class="mm-quick-prompt text-[11px] bg-primary/5 hover:bg-primary/10 text-primary font-medium px-2.5 py-1 rounded-full transition-colors border border-primary/15 cursor-pointer">
+                                What legal topics are covered?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <form id="mm-chat-form" class="p-3 bg-white border-t border-outline-variant/30 flex items-center gap-2">
+                <input id="mm-chat-input" type="text" autocomplete="off" placeholder="Ask me anything about "
+                    class="flex-1 text-[13px] text-on-surface bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-outline-variant/40 focus:border-primary rounded-xl px-3.5 py-2.5 outline-none transition-all placeholder:text-outline" />
+                <button type="submit" id="mm-chat-send-btn" aria-label="Send message"
+                    class="w-10 h-10 rounded-xl bg-primary hover:bg-[#1d4585] text-white flex items-center justify-center shadow-md active:scale-95 transition-all cursor-pointer flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">send</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- FLOATING MATHSMANTHRA AI ASSISTANT LAUNCHER -->
+        <button id="mm-chat-launcher" type="button" aria-label="Open MathsManthra AI Assistant" aria-expanded="false"
+            class="mm-chat-launcher mm-pulse-animation fixed right-4 bottom-24 z-50 w-[60px] h-[60px] rounded-full p-0 flex items-center justify-center active:scale-95 transition-transform cursor-pointer group">
+            <div
+                class="relative w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-xl bg-white">
+                <img src="/mathsmanthra-ai-assistant/public/images/smija/thinking.png"
+                    alt="Smija - MathsManthra AI Assistant"
+                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+            </div>
+            <!-- Online Status Dot -->
+            <span
+                class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white shadow-sm flex items-center justify-center">
+                <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+            </span>
+        </button>
         <!-- FLOATING BOTTOM STICKY ACTION BAR -->
         <aside
             class="sticky-cta fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-lg border-t border-outline-variant/20 px-4 py-3 w-full max-w-[480px] mx-auto flex items-center justify-between gap-3">
             <div class="flex flex-col">
-                <span class="font-label-sm text-label-sm text-secondary font-extrabold">₹999 Only</span>
-                <span class="text-[11px] text-on-surface-variant font-medium">Closes Soon • 8 Seats</span>
+                <span class="font-label-sm text-label-sm text-[#071944] font-extrabold text-[15px]">₹5,999</span>
+                <span class="text-[10px] text-[#B87916] font-bold uppercase tracking-wider">1-Month Intensive</span>
             </div>
             <div class="flex items-center gap-2">
-                <a aria-label="WhatsApp Us"
-                    class="p-2.5 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow-md active:scale-95 transition-transform"
-                    href="https://wa.me/" rel="noopener noreferrer" target="_blank">
-                    <span class="material-symbols-outlined text-xl" data-icon="chat">chat</span>
-                </a>
+                <button data-mm-consult
+                    class="py-2.5 px-3 rounded-xl border border-[#234a8a]/40 bg-blue-50/80 hover:bg-blue-100 text-[#234a8a] text-[12px] font-bold shadow-xs active:scale-95 transition-transform whitespace-nowrap cursor-pointer flex items-center gap-1">
+                    <span class="material-symbols-outlined text-base">support_agent</span>
+                    <span>Free Call</span>
+                </button>
                 <button data-mm-enroll
-                    class="py-2.5 px-5 rounded-xl bg-secondary text-on-secondary font-label-md text-label-md font-bold shadow-md active:scale-95 transition-transform whitespace-nowrap">
+                    class="py-2.5 px-4 rounded-xl bg-[#071944] hover:bg-[#0c2b75] text-[#ffdca8] font-label-md text-label-md font-extrabold shadow-md active:scale-95 transition-transform whitespace-nowrap border border-[#B87916]/40 cursor-pointer">
                     Enroll Now
                 </button>
             </div>
@@ -901,7 +1206,8 @@
             </button>
         </div>
         <!-- Form -->
-        <form id="mm-enroll-form" novalidate class="px-5 pt-4 pb-6 space-y-4 overflow-y-auto max-h-[75vh]">
+        <form id="mm-enroll-form" novalidate onsubmit="return false;"
+            class="px-5 pt-4 pb-6 space-y-4 overflow-y-auto max-h-[75vh]">
             <!-- Name -->
             <div>
                 <label for="mm-name" class="block text-[13px] font-semibold text-gray-700 mb-1">Full Name <span
@@ -946,7 +1252,7 @@
                 <p id="mm-err-course" class="hidden mt-1 text-[12px] text-red-500 font-medium"></p>
             </div>
             <!-- Submit -->
-            <button id="mm-submit-lead" type="submit"
+            <button id="mm-submit-lead" type="button"
                 class="w-full h-14 rounded-xl bg-[#904d00] text-white font-bold text-[15px]
                        shadow-lg shadow-[#904d00]/30 active:scale-95 transition-transform
                        flex items-center justify-center gap-2 mt-2 disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed">
@@ -991,7 +1297,7 @@
                     </div>
                     <div class="text-right">
                         <p class="text-[11px] text-gray-500 font-semibold uppercase tracking-wider">Amount</p>
-                        <p id="mm-pay-amount" class="text-[20px] font-extrabold text-[#904d00]">₹999</p>
+                        <p id="mm-pay-amount" class="text-[20px] font-extrabold text-[#B87916]">₹5,999</p>
                     </div>
                 </div>
                 <p class="text-[11px] text-gray-500 mt-1.5">Course: <span id="mm-pay-course"
@@ -1018,24 +1324,24 @@
                 <p class="text-[12px] text-gray-500 font-semibold text-center mb-2 uppercase tracking-wider">Or open
                     directly in</p>
                 <div class="grid grid-cols-3 gap-2 mb-3">
-                    <button id="mm-btn-gpay"
-                        class="flex flex-col items-center justify-center gap-1 py-3 rounded-xl bg-white border border-gray-200 shadow-sm active:scale-95 transition-transform">
+                    <button id="mm-btn-gpay" type="button"
+                        class="flex flex-col items-center justify-center gap-1 py-3 rounded-xl bg-white border border-gray-200 shadow-sm hover:bg-gray-50 active:scale-95 transition-transform cursor-pointer">
                         <span class="text-xl">🟢</span>
                         <span class="text-[11px] font-bold text-gray-700">GPay</span>
                     </button>
-                    <button id="mm-btn-phonepe"
-                        class="flex flex-col items-center justify-center gap-1 py-3 rounded-xl bg-white border border-gray-200 shadow-sm active:scale-95 transition-transform">
+                    <button id="mm-btn-phonepe" type="button"
+                        class="flex flex-col items-center justify-center gap-1 py-3 rounded-xl bg-white border border-gray-200 shadow-sm hover:bg-gray-50 active:scale-95 transition-transform cursor-pointer">
                         <span class="text-xl">🟣</span>
                         <span class="text-[11px] font-bold text-gray-700">PhonePe</span>
                     </button>
-                    <button id="mm-btn-paytm"
-                        class="flex flex-col items-center justify-center gap-1 py-3 rounded-xl bg-white border border-gray-200 shadow-sm active:scale-95 transition-transform">
+                    <button id="mm-btn-paytm" type="button"
+                        class="flex flex-col items-center justify-center gap-1 py-3 rounded-xl bg-white border border-gray-200 shadow-sm hover:bg-gray-50 active:scale-95 transition-transform cursor-pointer">
                         <span class="text-xl">🔵</span>
                         <span class="text-[11px] font-bold text-gray-700">Paytm</span>
                     </button>
                 </div>
-                <button id="mm-btn-generic"
-                    class="w-full py-3 rounded-xl bg-gray-100 text-gray-700 font-semibold text-[13px] mb-4 active:scale-95 transition-transform">
+                <button id="mm-btn-generic" type="button"
+                    class="w-full py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-[13px] mb-4 active:scale-95 transition-transform cursor-pointer">
                     Open Any UPI App
                 </button>
             </div>
@@ -1068,7 +1374,8 @@
                 <span class="material-symbols-outlined text-lg">close</span>
             </button>
         </div>
-        <form id="mm-proof-form" novalidate class="px-5 pt-4 pb-8 overflow-y-auto max-h-[80vh]">
+        <form id="mm-proof-form" novalidate onsubmit="return false;"
+            class="px-5 pt-4 pb-8 overflow-y-auto max-h-[80vh]">
             <!-- Info pill -->
             <div class="flex items-center justify-between bg-green-50 rounded-2xl px-4 py-3 mb-4">
                 <div>
@@ -1078,7 +1385,7 @@
                 </div>
                 <div class="text-right">
                     <p class="text-[11px] text-gray-500 font-semibold uppercase tracking-wider">Amount Paid</p>
-                    <p id="mm-upload-amount" class="text-[20px] font-extrabold text-green-600">₹999</p>
+                    <p id="mm-upload-amount" class="text-[20px] font-extrabold text-green-600">₹5,999</p>
                 </div>
             </div>
             <!-- File upload zone -->
@@ -1103,7 +1410,7 @@
                 </div>
             </div>
             <!-- Submit -->
-            <button id="mm-submit-proof" type="submit"
+            <button id="mm-submit-proof" type="button"
                 class="w-full h-14 rounded-xl bg-[#234a8a] text-white font-bold text-[15px]
                        shadow-lg shadow-[#234a8a]/30 active:scale-95 transition-transform
                        flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed">
@@ -1183,7 +1490,8 @@
             </button>
         </div>
         <!-- Form -->
-        <form id="mm-consult-form" novalidate class="px-5 pt-4 pb-6 space-y-4 overflow-y-auto max-h-[75vh]">
+        <form id="mm-consult-form" novalidate onsubmit="return false;"
+            class="px-5 pt-4 pb-6 space-y-4 overflow-y-auto max-h-[75vh]">
             <!-- Name -->
             <div>
                 <label for="mm-c-name" class="block text-[13px] font-semibold text-gray-700 mb-1">Full Name <span
@@ -1193,7 +1501,7 @@
                            focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition" />
                 <p id="mm-err-c-name" class="hidden mt-1 text-[12px] text-red-500 font-medium"></p>
             </div>
-            <!-- Phone -->
+            <!-- Phone / WhatsApp -->
             <div>
                 <label for="mm-c-phone" class="block text-[13px] font-semibold text-gray-700 mb-1">WhatsApp Number <span
                         class="text-red-500">*</span></label>
@@ -1216,52 +1524,59 @@
                            focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition" />
                 <p id="mm-err-c-email" class="hidden mt-1 text-[12px] text-red-500 font-medium"></p>
             </div>
-            <!-- Interested Course -->
+            <!-- Academy Name -->
             <div>
-                <label for="mm-c-course" class="block text-[13px] font-semibold text-gray-700 mb-1">Interested In <span
-                        class="text-gray-400 text-xs font-normal">(Optional)</span></label>
-                <select id="mm-c-course"
-                    class="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-[15px] text-gray-900
-                           focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition appearance-none">
-                    <option value="">— Select a course —</option>
-                    <!-- Populated dynamically from MM_CONFIG.COURSES by enrollment.js -->
-                </select>
-            </div>
-            <!-- Role / Profile -->
-            <div>
-                <label for="mm-c-role" class="block text-[13px] font-semibold text-gray-700 mb-1">I am a <span
-                        class="text-gray-400 text-xs font-normal">(Optional)</span></label>
-                <select id="mm-c-role"
-                    class="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-[15px] text-gray-900
-                           focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition appearance-none">
-                    <option value="">— Select your profile —</option>
-                    <option value="School Teacher">School Teacher</option>
-                    <option value="Tuition / Coaching Center Teacher">Tuition / Coaching Center Teacher</option>
-                    <option value="Independent Home Tutor">Independent Home Tutor</option>
-                    <option value="College Professor / Lecturer">College Professor / Lecturer</option>
-                    <option value="EdTech / Academy Founder">EdTech / Academy Founder</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <!-- Topic / Note -->
-            <div>
-                <label for="mm-c-notes" class="block text-[13px] font-semibold text-gray-700 mb-1">What would you like
-                    guidance on? <span class="text-gray-400 text-xs font-normal">(Optional)</span></label>
-                <input id="mm-c-notes" type="text" placeholder="E.g. AI tools for teaching, student acquisition..."
+                <label for="mm-c-academy" class="block text-[13px] font-semibold text-gray-700 mb-1">Academy Name <span
+                        class="text-red-500">*</span></label>
+                <input id="mm-c-academy" type="text" placeholder="E.g. MathsManthra Academy / Apex Classes"
                     class="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-[15px] text-gray-900 placeholder-gray-400
                            focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition" />
+                <p id="mm-err-c-academy" class="hidden mt-1 text-[12px] text-red-500 font-medium"></p>
+            </div>
+            <!-- Consultation Topic -->
+            <div>
+                <label for="mm-c-topic" class="block text-[13px] font-semibold text-gray-700 mb-1">Consultation Topic
+                    <span class="text-red-500">*</span></label>
+                <select id="mm-c-topic"
+                    class="w-full h-12 px-4 rounded-xl border border-gray-200 bg-gray-50 text-[15px] text-gray-900
+                           focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition appearance-none">
+                    <option value="">— Select Consultation Topic —</option>
+                    <option value="Scaling & Growing My Academy">Scaling & Growing My Academy</option>
+                    <option value="Launching  Edupreneur Mentorship">Launching — Edupreneur
+                        Mentorship</option>
+                    <option value="Student Acquisition & Lead Generation">Student Acquisition & Lead Generation</option>
+                    <option value="Online / Hybrid Teaching Infrastructure">Online / Hybrid Teaching Infrastructure
+                    </option>
+                    <option value="Pricing, Fee Structure & Revenue Strategy">Pricing, Fee Structure & Revenue Strategy
+                    </option>
+                    <option value="Other Academy Guidance">Other Academy Guidance</option>
+                </select>
+                <p id="mm-err-c-topic" class="hidden mt-1 text-[12px] text-red-500 font-medium"></p>
+            </div>
+            <!-- Specific Questions or Goals (Optional) -->
+            <div>
+                <label for="mm-c-notes" class="block text-[13px] font-semibold text-gray-700 mb-1">Specific Questions or
+                    Goals <span class="text-gray-400 text-xs font-normal">(Optional)</span></label>
+                <textarea id="mm-c-notes" rows="2"
+                    placeholder="Tell us briefly what specific challenges or goals you want to discuss..."
+                    class="w-full p-3 rounded-xl border border-gray-200 bg-gray-50 text-[14px] text-gray-900 placeholder-gray-400
+                           focus:outline-none focus:ring-2 focus:ring-[#234a8a]/30 focus:border-[#234a8a] transition resize-none"></textarea>
+            </div>
+            <!-- Global error display -->
+            <div id="mm-err-c-global"
+                class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-[13px] text-red-600 font-medium">
             </div>
             <!-- Submit -->
-            <button id="mm-submit-consult" type="submit"
+            <button id="mm-submit-consult" type="button"
                 class="w-full h-14 rounded-xl bg-[#234a8a] text-white font-bold text-[15px]
                        shadow-lg shadow-[#234a8a]/30 active:scale-95 transition-transform
-                       flex items-center justify-center gap-2 mt-2 disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed">
+                       flex items-center justify-center gap-2 mt-2 disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed cursor-pointer">
                 <svg id="mm-spinner-consult" class="mm-spinner hidden animate-spin h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
                 </svg>
-                <span class="mm-btn-text">Schedule Free Call →</span>
+                <span class="mm-btn-text">Submit Consultation Enquiry →</span>
             </button>
             <p class="text-center text-[11px] text-gray-400">⚡ 15-Minute 1-on-1 Guidance • 100% Free • No Obligation</p>
         </form>
@@ -1312,6 +1627,7 @@
     <!-- Scripts: config must load before enrollment.js -->
     <script src="config.js?v=2.1"></script>
     <script src="enrollment.js?v=2.1"></script>
+    <script src="chatbot.js"></script>
 
 </body>
 

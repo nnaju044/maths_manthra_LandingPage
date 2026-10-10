@@ -1,0 +1,4 @@
+[      43ms] [WARNING] cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation @ https://cdn.tailwindcss.com/?plugins=forms,container-queries:63
+[     139ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8080/favicon.ico:0
+[   42682ms] [LOG] [MM] Sending createLead request to Apps Script... @ http://127.0.0.1:8080/enrollment.js?v=2.1:343
+[   64884ms] [LOG] [MM] Lead saved: MM4544 @ http://127.0.0.1:8080/enrollment.js?v=2.1:347

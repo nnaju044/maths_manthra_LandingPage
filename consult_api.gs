@@ -72,14 +72,16 @@ function createConsultation(data) {
       sheet = ss.insertSheet(SHEET_CONSULTATIONS);
     }
     sheet.appendRow([
-      "Consultation ID", "Name", "Phone", "Email",
-      "Interested Course", "Role / Profile", "Message / Notes",
+      "Consultation ID", "Name", "WhatsApp Number", "Email",
+      "Academy Name", "Consultation Topic",
       "Source", "Created Date", "Status"
     ]);
-    sheet.getRange(1, 1, 1, 10).setFontWeight("bold").setBackground("#234a8a").setFontColor("#ffffff");
+    sheet.getRange(1, 1, 1, 9).setFontWeight("bold").setBackground("#234a8a").setFontColor("#ffffff");
     sheet.setFrozenRows(1);
     sheet.setColumnWidth(1, 150);
-    sheet.setColumnWidth(9, 180);
+    sheet.setColumnWidth(5, 200);
+    sheet.setColumnWidth(6, 250);
+    sheet.setColumnWidth(8, 180);
   }
 
   // Generate sequential Consultation ID: FC0001, FC0002 ...
@@ -87,18 +89,50 @@ function createConsultation(data) {
   const seq       = lastRow; // row 1 = header
   const consultId = "FC" + String(seq).padStart(4, "0");
 
-  sheet.appendRow([
-    consultId,
-    data.name    || "",
-    data.phone   || "",
-    data.email   || "",
-    data.course  || "",
-    data.role    || "",
-    data.notes   || "",
-    data.source  || "landing_page_consultation",
-    new Date().toISOString(),
-    "pending_contact",
-  ]);
+  const name        = data.name || "";
+  const phone       = data.phone || data.whatsapp || "";
+  const email       = data.email || "";
+  const academyName = data.academyName || data.academy || data.course || "";
+  const topic       = data.topic || data.consultationTopic || data.role || data.notes || "";
+  const source      = data.source || "landing_page_consultation";
+  const createdDate = new Date().toISOString();
+  const status      = "pending_contact";
 
-  return { success: true, consultId };
+  // Check existing headers to adapt to both legacy and updated schemas
+  const lastCol   = Math.max(sheet.getLastColumn(), 1);
+  const headers   = sheet.getRange(1, 1, 1, lastCol).getValues()[0].map(function (h) {
+    return String(h).trim().toLowerCase();
+  });
+  const headerStr = headers.join(" ");
+
+  if (headerStr.includes("interested course") || (headerStr.includes("role") && !headerStr.includes("academy name"))) {
+    // Legacy 10-column schema: [ID, Name, Phone, Email, Interested Course, Role, Notes, Source, Date, Status]
+    sheet.appendRow([
+      consultId,
+      name,
+      phone,
+      email,
+      academyName,
+      topic,
+      data.notes || topic,
+      source,
+      createdDate,
+      status,
+    ]);
+  } else {
+    // Updated 9-column schema: [ID, Name, WhatsApp Number, Email, Academy Name, Consultation Topic, Source, Date, Status]
+    sheet.appendRow([
+      consultId,
+      name,
+      phone,
+      email,
+      academyName,
+      topic,
+      source,
+      createdDate,
+      status,
+    ]);
+  }
+
+  return { success: true, consultId: consultId };
 }

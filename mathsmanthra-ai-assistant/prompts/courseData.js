@@ -17,7 +17,12 @@ module.exports = {
         "Coaches",
         "College Lecturers",
         "Academy Owners",
-        "Aspiring Edupreneurs"
+        "Aspiring Edupreneurs",
+        "homemakers",
+        "businesswomen",
+        "job seekers",
+        "House wifes",
+        "college students"
     ],
 
     workshop: "Edupreneur Mentorship",

@@ -21,20 +21,21 @@ const MM_CONFIG = {
   // International format without + sign (e.g., 919876543210 for India)
   WHATSAPP_NUMBER: "917560908799",
 
+  // ── AI Mentor Assistant Endpoint ──────────────────────────────────────────
+  AI_API_URL: "http://localhost:4000/api/chat",
+
   // ── Courses & Pricing ──────────────────────────────────────────────────────
   COURSES: [
     {
-      id: "ai_digital_5day",
-      label: "AI & Digital Marketing for Teachers (5-Day) — ₹999",
-      price: 999,
+      id: "edupreneur_mentorship",
+      label: "Course 3 — Edupreneur Mentorship",
+      price: 5999,
     },
-    // Add more courses here as needed
-    // { id: "advanced", label: "Advanced Program — ₹1,999", price: 1999 },
   ],
 
   // ── UTM / Tracking (optional) ──────────────────────────────────────────────
   DEFAULT_SOURCE: "landing_page",
-  DEFAULT_CAMPAIGN: "oct_2025_cohort",
+  DEFAULT_CAMPAIGN: "edupreneur_mentorship",
 
   // ── Google Drive ───────────────────────────────────────────────────────────
   // The Apps Script will upload screenshots into this folder.

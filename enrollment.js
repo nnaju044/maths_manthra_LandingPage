@@ -34,6 +34,8 @@
     name: null,
     phone: null,
     email: null,
+    academyName: null,
+    topic: null,
     busy: false,
   };
 
@@ -170,6 +172,9 @@
       opt.className = "mm-dyn";
       sel.appendChild(opt);
     });
+    if ((MM_CONFIG.COURSES || []).length === 1) {
+      sel.value = MM_CONFIG.COURSES[0].id;
+    }
   }
 
   // ── Also populate consult course select ──────────────────────────────────
@@ -184,6 +189,9 @@
       opt.className = "mm-dyn";
       sel.appendChild(opt);
     });
+    if ((MM_CONFIG.COURSES || []).length === 1) {
+      sel.value = MM_CONFIG.COURSES[0].id;
+    }
   }
 
   // ── Lead ID Generator ─────────────────────────────────────────────────────
@@ -212,23 +220,41 @@
     img.alt = "Scan to pay via UPI";
   }
 
-  // ── Wire mobile pay buttons (hidden on desktop) ───────────────────────────
+  // ── Wire mobile & desktop pay buttons ──────────────────────────────────
   function wirePaymentButtons(upiUrl) {
     const appsRow = $("mm-mobile-pay-apps");
-    if (appsRow) appsRow.style.display = isMobile() ? "" : "none";
+    if (appsRow) appsRow.style.display = "block";
 
     const desktopHint = $("mm-desktop-hint");
-    if (desktopHint) desktopHint.style.display = isMobile() ? "none" : "";
+    if (desktopHint) {
+      if (isMobile()) {
+        desktopHint.classList.add("hidden");
+      } else {
+        desktopHint.classList.remove("hidden");
+      }
+    }
 
     const apps = [
-      { id: "mm-btn-gpay", url: upiUrl.replace("upi://pay", "gpay://upi/pay") },
-      { id: "mm-btn-phonepe", url: upiUrl.replace("upi://", "phonepe://") },
-      { id: "mm-btn-paytm", url: upiUrl.replace("upi://", "paytmmp://") },
-      { id: "mm-btn-generic", url: upiUrl },
+      { id: "mm-btn-gpay", name: "Google Pay", url: upiUrl.replace("upi://pay", "gpay://upi/pay") },
+      { id: "mm-btn-phonepe", name: "PhonePe", url: upiUrl.replace("upi://", "phonepe://") },
+      { id: "mm-btn-paytm", name: "Paytm", url: upiUrl.replace("upi://", "paytmmp://") },
+      { id: "mm-btn-generic", name: "UPI App", url: upiUrl },
     ];
-    apps.forEach(({ id, url }) => {
+    apps.forEach(({ id, name, url }) => {
       const btn = $(id);
-      if (btn) btn.onclick = () => { window.location.href = url; };
+      if (btn) {
+        btn.onclick = () => {
+          if (isMobile()) {
+            window.location.href = url;
+          } else {
+            const upiId = (window.MM_CONFIG && window.MM_CONFIG.UPI_ID) || "smijasmija006@oksbi";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(upiId).catch(() => {});
+            }
+            alert(`UPI ID (${upiId}) copied to clipboard!\n\nPlease scan the QR code above or pay using your ${name} app.`);
+          }
+        };
+      }
     });
   }
 
@@ -561,33 +587,57 @@
     }
     if (consult.busy) return;
 
-    clearFieldErrors("mm-err-c-name", "mm-err-c-phone", "mm-err-c-email");
+    clearFieldErrors(
+      "mm-err-c-name",
+      "mm-err-c-phone",
+      "mm-err-c-email",
+      "mm-err-c-academy",
+      "mm-err-c-topic",
+      "mm-err-c-global"
+    );
 
     const name = $("mm-c-name") ? $("mm-c-name").value.trim() : "";
     const phone = $("mm-c-phone") ? $("mm-c-phone").value.trim() : "";
     const email = $("mm-c-email") ? $("mm-c-email").value.trim() : "";
-    const course = $("mm-c-course") ? $("mm-c-course").value : "";
-    const role = $("mm-c-role") ? $("mm-c-role").value : "";
+    const academyName = $("mm-c-academy") ? $("mm-c-academy").value.trim() : "";
+    const topic = $("mm-c-topic") ? $("mm-c-topic").value.trim() : "";
     const notes = $("mm-c-notes") ? $("mm-c-notes").value.trim() : "";
 
     let ok = true;
-    if (!name) { fieldError("mm-err-c-name", "Name is required"); ok = false; }
-    if (!/^[6-9]\d{9}$/.test(phone)) { fieldError("mm-err-c-phone", "Enter a valid 10-digit Indian mobile number"); ok = false; }
+    if (!name) { fieldError("mm-err-c-name", "Full Name is required"); ok = false; }
+    if (!/^[6-9]\d{9}$/.test(phone)) { fieldError("mm-err-c-phone", "Enter a valid 10-digit Indian WhatsApp mobile number"); ok = false; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { fieldError("mm-err-c-email", "Enter a valid email address"); ok = false; }
+    if (!academyName) { fieldError("mm-err-c-academy", "Academy Name is required"); ok = false; }
+    if (!topic) { fieldError("mm-err-c-topic", "Please select a consultation topic"); ok = false; }
     if (!ok) return;
 
     consult.busy = true;
-    setBtn("mm-submit-consult", true, "Scheduling…");
+    setBtn("mm-submit-consult", true, "Submitting Enquiry…");
 
     try {
       let consultId;
 
       if (!isDemoUrl(MM_CONFIG.CONSULTATION_APPS_SCRIPT_URL)) {
-        const data = await apiPost(MM_CONFIG.CONSULTATION_APPS_SCRIPT_URL, {
+        const payload = {
           action: "createConsultation",
-          name, phone, email, course, role, notes,
-          source: "landing_page_consultation",
-        });
+          name: name,
+          phone: phone,
+          whatsapp: phone,
+          email: email,
+          academyName: academyName,
+          academy: academyName,
+          topic: topic,
+          consultationTopic: topic,
+          notes: notes,
+          course: academyName, // backward compatibility with legacy sheet Column 5
+          role: topic,         // backward compatibility with legacy sheet Column 6
+          source: MM_CONFIG.DEFAULT_SOURCE || "landing_page_consultation",
+        };
+
+        const data = await apiPost(MM_CONFIG.CONSULTATION_APPS_SCRIPT_URL, payload);
+        if (!data || !data.success) {
+          throw new Error((data && data.error) || "Unable to save consultation enquiry.");
+        }
         consultId = data.consultId;
       } else {
         consultId = "FC" + String(Date.now()).slice(-4);
@@ -598,19 +648,22 @@
       consult.name = name;
       consult.phone = phone;
       consult.email = email;
+      consult.academyName = academyName;
+      consult.topic = topic;
 
       const form = $("mm-consult-form");
       if (form) form.reset();
 
+      // Show success sheet ONLY after confirmed successful submission
       closeSheet("mm-consult-sheet");
       openConsultSuccess();
 
     } catch (err) {
       console.error("[MM] Consultation error:", err);
-      fieldError("mm-err-c-email", "Something went wrong. Please try again.");
+      fieldError("mm-err-c-global", "Submission failed: " + (err.message || "Please check your connection and try again."));
     } finally {
       consult.busy = false;
-      setBtn("mm-submit-consult", false, "Schedule Free Call →");
+      setBtn("mm-submit-consult", false, "Submit Consultation Enquiry →");
     }
   }
 
@@ -622,7 +675,7 @@
 
   function consultWhatsApp() {
     const msg = encodeURIComponent(
-      `Hi MathsManthra,\n\nI just booked a Free Consultation.\n\nConsultation ID: ${consult.consultId}\nName: ${consult.name}\n\nLooking forward to our call!`
+      `Hi MathsManthra,\n\nI just submitted a Free Consultation enquiry.\n\nConsultation ID: ${consult.consultId}\nName: ${consult.name}\nAcademy: ${consult.academyName || "N/A"}\nTopic: ${consult.topic || "Edupreneur Mentorship"}\n\nLooking forward to speaking with the team!`
     );
     window.open(`https://wa.me/${MM_CONFIG.WHATSAPP_NUMBER}?text=${msg}`, "_blank");
   }
@@ -662,11 +715,19 @@
     // ── Enrollment form ──────────────────────────────────────────────────────
     const enrollForm = $("mm-enroll-form");
     const enrollBtn = $("mm-submit-lead");
-    if (enrollBtn) enrollBtn.onclick = null;
     if (enrollForm) {
-      enrollForm.onsubmit = null;
-      enrollForm.removeEventListener("submit", submitLead);
-      enrollForm.addEventListener("submit", submitLead);
+      enrollForm.onsubmit = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        submitLead(e);
+        return false;
+      };
+    }
+    if (enrollBtn) {
+      enrollBtn.onclick = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        submitLead(e);
+        return false;
+      };
     }
 
     // "I've Paid" button
@@ -683,11 +744,19 @@
     // Proof upload form
     const proofForm = $("mm-proof-form");
     const proofBtn = $("mm-submit-proof");
-    if (proofBtn) proofBtn.onclick = null;
     if (proofForm) {
-      proofForm.onsubmit = null;
-      proofForm.removeEventListener("submit", submitProof);
-      proofForm.addEventListener("submit", submitProof);
+      proofForm.onsubmit = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        submitProof(e);
+        return false;
+      };
+    }
+    if (proofBtn) {
+      proofBtn.onclick = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        submitProof(e);
+        return false;
+      };
     }
 
     // Success: WhatsApp + close
@@ -700,11 +769,19 @@
     // ── Consultation form ────────────────────────────────────────────────────
     const consultForm = $("mm-consult-form");
     const consultBtn = $("mm-submit-consult");
-    if (consultBtn) consultBtn.onclick = null;
     if (consultForm) {
-      consultForm.onsubmit = null;
-      consultForm.removeEventListener("submit", submitConsultation);
-      consultForm.addEventListener("submit", submitConsultation);
+      consultForm.onsubmit = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        submitConsultation(e);
+        return false;
+      };
+    }
+    if (consultBtn) {
+      consultBtn.onclick = function (e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        submitConsultation(e);
+        return false;
+      };
     }
 
     const consultWa = $("mm-consult-whatsapp");
@@ -721,6 +798,12 @@
         const msg = encodeURIComponent(`Hi MathsManthra, I need help with UPI payment.\nLead ID: ${enroll.leadId || "N/A"}`);
         window.open(`https://wa.me/${MM_CONFIG.WHATSAPP_NUMBER}?text=${msg}`, "_blank");
       });
+    }
+    // Expose utility functions globally
+    if (typeof window !== "undefined") {
+      window.openSheet = openSheet;
+      window.closeSheet = closeSheet;
+      window.closeAllSheets = closeAllSheets;
     }
   }
 

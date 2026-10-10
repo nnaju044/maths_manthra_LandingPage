@@ -95,7 +95,7 @@ Open it and verify you have access.
 
 | Sheet: Consultations | Columns |
 |---------------------|---------|
-| Consultation ID, Name, Phone, Email, Interested Course, Role / Profile, Notes, Source, Created Date, Status |
+| Consultation ID, Name, WhatsApp Number, Email, Academy Name, Consultation Topic, Source, Created Date, Status |
 
 ---
 

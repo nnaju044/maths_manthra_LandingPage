@@ -1,0 +1,512 @@
+- generic [active] [ref=f136e1]:
+  - generic [ref=f136e2]:
+    - banner [ref=f136e3]:
+      - generic [ref=f136e4]:
+        - img "MathsManthra Academy" [ref=f136e5]
+        - generic [ref=f136e6]:
+          - generic [ref=f136e7]: MathsManthra Academy
+          - generic [ref=f136e8]: Course 3 • Edupreneur
+      - button "Share" [ref=f136e9] [cursor=pointer]:
+        - generic [ref=f136e10]: share
+    - main [ref=f136e11]:
+      - generic [ref=f136e12]:
+        - paragraph [ref=f136e14]:
+          - generic [ref=f136e15]: ✨
+          - generic [ref=f136e16]: “Better Teachers… Bigger Impact!”
+          - generic [ref=f136e17]: ✨
+        - generic [ref=f136e18]: Course 3 • 1-Month Intensive Program • Limited Seats Only
+        - heading "From Teacher to Edupreneur." [level=1] [ref=f136e21]
+        - paragraph [ref=f136e22]: Build, Brand & Scale Your Own Educational Empire!
+        - paragraph [ref=f136e23]: A complete 1-month intensive mentorship designed to transform passionate educators into thriving, independent academy founders.
+        - generic [ref=f136e25]:
+          - img "Vikram Sundaram - MathsManthra Lead Mentor" [ref=f136e26]
+          - generic [ref=f136e27]:
+            - generic [ref=f136e28]: 👑
+            - generic [ref=f136e29]: Edupreneur Mentorship
+          - generic [ref=f136e30]:
+            - generic [ref=f136e31]: ⭐
+            - generic [ref=f136e32]: 1-Month Intensive
+        - generic [ref=f136e33]:
+          - generic [ref=f136e34]:
+            - generic [ref=f136e35]: verified
+            - generic [ref=f136e36]: 1-Month Intensive
+          - generic [ref=f136e37]:
+            - generic [ref=f136e38]: workspace_premium
+            - generic [ref=f136e39]: Certificate Included
+          - generic [ref=f136e40]:
+            - generic [ref=f136e41]: support_agent
+            - generic [ref=f136e42]: Weekly 1:1 Mentoring
+          - generic [ref=f136e43]:
+            - generic [ref=f136e44]: all_inclusive
+            - generic [ref=f136e45]: Lifetime Recordings
+        - generic [ref=f136e47]:
+          - generic [ref=f136e48]:
+            - generic [ref=f136e49]: ₹9,999
+            - generic [ref=f136e50]: ₹5,999
+            - generic [ref=f136e51]: 40% OFF
+          - paragraph [ref=f136e52]: Limited Seats Only • Comprehensive 1-Month Program
+        - generic [ref=f136e53]:
+          - button "Enroll Now — ₹5,999 arrow_forward" [ref=f136e54] [cursor=pointer]:
+            - generic [ref=f136e55]: Enroll Now — ₹5,999
+            - generic [ref=f136e56]: arrow_forward
+          - button "support_agent Book Free Consultation" [ref=f136e57] [cursor=pointer]:
+            - generic [ref=f136e58]: support_agent
+            - generic [ref=f136e59]: Book Free Consultation
+          - link "chat Chat on WhatsApp" [ref=f136e60] [cursor=pointer]:
+            - /url: https://wa.me/917560908799?text=Hi%20MathsManthra%2C%20I%20am%20interested%20in%20Course%203%20%E2%80%94%20Edupreneur%20Mentorship.
+            - generic [ref=f136e61]: chat
+            - generic [ref=f136e62]: Chat on WhatsApp
+      - generic [ref=f136e64]:
+        - generic [ref=f136e66]: “
+        - paragraph [ref=f136e67]: Build your dream. Lead your academy. Change lives. Leave a legacy.
+        - paragraph [ref=f136e68]: — MathsManthra Mentorship Vision
+      - generic [ref=f136e69]:
+        - generic [ref=f136e70]:
+          - generic [ref=f136e71]: TARGET AUDIENCE
+          - heading "Who Is This For?" [level=2] [ref=f136e72]
+          - paragraph [ref=f136e73]: "Designed for dedicated educators ready to step into leadership and ownership:"
+        - generic [ref=f136e74]:
+          - generic [ref=f136e75]:
+            - generic [ref=f136e76]: school
+            - generic [ref=f136e78]:
+              - heading "School Teachers & Coaches" [level=3] [ref=f136e79]
+              - paragraph [ref=f136e80]: Ready to transition from fixed salaries to owning a respected educational brand and personal intellectual property.
+          - generic [ref=f136e81]:
+            - generic [ref=f136e82]: menu_book
+            - generic [ref=f136e84]:
+              - heading "College Lecturers & Academicians" [level=3] [ref=f136e85]
+              - paragraph [ref=f136e86]: Seeking to monetize specialized domain expertise through high-value masterclasses and structured online courses.
+          - generic [ref=f136e87]:
+            - generic [ref=f136e88]: groups
+            - generic [ref=f136e90]:
+              - heading "Tuition Teachers & Educators" [level=3] [ref=f136e91]
+              - paragraph [ref=f136e92]: Looking to expand far beyond local neighborhood limits into scalable, recurring nationwide student cohorts.
+          - generic [ref=f136e93]:
+            - generic [ref=f136e94]: rocket_launch
+            - generic [ref=f136e96]:
+              - heading "Aspiring Edupreneurs & Coaches" [level=3] [ref=f136e97]
+              - paragraph [ref=f136e98]: Wanting a proven, step-by-step roadmap to validate, launch, and automate a coaching business without trial and error.
+          - generic [ref=f136e99]:
+            - generic [ref=f136e100]: domain
+            - generic [ref=f136e102]:
+              - heading "Anyone Who Wants to Build Their Own Academy" [level=3] [ref=f136e103]
+              - paragraph [ref=f136e104]: Driven by pedagogical impact and determined to build a lasting, sustainable, and legally protected educational enterprise.
+      - generic [ref=f136e105]:
+        - generic [ref=f136e106]:
+          - text: ACTION-PACKED CURRICULUM
+          - heading "1-Month Intensive Syllabus" [level=2] [ref=f136e107]
+          - paragraph [ref=f136e108]: "A systematic modular journey from teacher to educational business leader:"
+        - generic [ref=f136e109]:
+          - generic [ref=f136e110]:
+            - generic [ref=f136e111]:
+              - generic [ref=f136e112]: "01"
+              - generic [ref=f136e113]:
+                - text: Foundation Modules
+                - heading "Everything from Courses 1 & 2" [level=3] [ref=f136e114]
+            - list [ref=f136e115]:
+              - listitem [ref=f136e116]:
+                - generic [ref=f136e117]: ✔
+                - generic [ref=f136e118]:
+                  - strong [ref=f136e119]: "Everything from Course 1 & 2:"
+                  - text: Complete access to all foundational tools, AI prompt kits, Canva creative workflows, and digital marketing foundations.
+          - generic [ref=f136e120]:
+            - generic [ref=f136e121]:
+              - generic [ref=f136e122]: "02"
+              - generic [ref=f136e123]:
+                - text: Core Business Blueprint
+                - heading "Build and Grow Your Educational Business" [level=3] [ref=f136e124]
+            - generic [ref=f136e125]:
+              - generic [ref=f136e126]:
+                - generic [ref=f136e127]: ▸
+                - generic [ref=f136e128]: Build Your Educational Brand
+              - generic [ref=f136e129]:
+                - generic [ref=f136e130]: ▸
+                - generic [ref=f136e131]: Create Your Own Online Academy
+              - generic [ref=f136e132]:
+                - generic [ref=f136e133]: ▸
+                - generic [ref=f136e134]: Team Building
+              - generic [ref=f136e135]:
+                - generic [ref=f136e136]: ▸
+                - generic [ref=f136e137]: Business Strategy
+              - generic [ref=f136e138]:
+                - generic [ref=f136e139]: ▸
+                - generic [ref=f136e140]: AI Automation
+              - generic [ref=f136e141]:
+                - generic [ref=f136e142]: ▸
+                - generic [ref=f136e143]: Sales System
+              - generic [ref=f136e144]:
+                - generic [ref=f136e145]: ▸
+                - generic [ref=f136e146]: Funnels & Marketing
+              - generic [ref=f136e147]:
+                - generic [ref=f136e148]: ▸
+                - generic [ref=f136e149]: Leadership
+              - generic [ref=f136e150]:
+                - generic [ref=f136e151]: ▸
+                - generic [ref=f136e152]: Scale Your Academy
+          - generic [ref=f136e153]:
+            - generic [ref=f136e154]:
+              - generic [ref=f136e155]: "03"
+              - generic [ref=f136e156]:
+                - text: Legal & Compliance Setup
+                - heading "Legal and Business Fundamentals" [level=3] [ref=f136e157]
+            - generic [ref=f136e158]:
+              - generic [ref=f136e159]:
+                - generic [ref=f136e160]: ⚖️
+                - generic [ref=f136e161]: Business Registration
+              - generic [ref=f136e162]:
+                - generic [ref=f136e163]: ⚖️
+                - generic [ref=f136e164]: GST Basics
+              - generic [ref=f136e165]:
+                - generic [ref=f136e166]: ⚖️
+                - generic [ref=f136e167]: MSME Registration
+              - generic [ref=f136e168]:
+                - generic [ref=f136e169]: ⚖️
+                - generic [ref=f136e170]: Trademark Basics
+              - generic [ref=f136e171]:
+                - generic [ref=f136e172]: ⚖️
+                - generic [ref=f136e173]: Copyright
+              - generic [ref=f136e174]:
+                - generic [ref=f136e175]: ⚖️
+                - generic [ref=f136e176]: Invoicing & Tax Basics
+              - generic [ref=f136e177]:
+                - generic [ref=f136e178]: ⚖️
+                - generic [ref=f136e179]: Agreements & Policies
+      - generic [ref=f136e180]:
+        - generic [ref=f136e181]:
+          - text: INTENDED PROGRAM OUTCOMES
+          - heading "What You Can Achieve" [level=2] [ref=f136e182]
+          - paragraph [ref=f136e183]: "Transformational milestones targeted by this 1-month intensive journey:"
+        - generic [ref=f136e184]:
+          - generic [ref=f136e185]:
+            - generic [ref=f136e186]: verified_user
+            - generic [ref=f136e188]:
+              - heading "Build and Scale Your Own Educational Brand" [level=3] [ref=f136e189]
+              - paragraph [ref=f136e190]: Establish recognized authority and market credibility in your teaching subject, positioning yourself as an undisputed academy leader.
+          - generic [ref=f136e191]:
+            - generic [ref=f136e192]: public
+            - generic [ref=f136e194]:
+              - heading "Impact Thousands of Students" [level=3] [ref=f136e195]
+              - paragraph [ref=f136e196]: Expand your teaching beyond geographical barriers to mentor, guide, and transform students across India with digital scale.
+          - generic [ref=f136e197]:
+            - generic [ref=f136e198]: savings
+            - generic [ref=f136e200]:
+              - heading "Create Freedom and Financial Success" [level=3] [ref=f136e201]
+              - paragraph [ref=f136e202]: Develop repeatable sales funnels, automated systems, and high-margin online offerings that foster genuine professional independence.
+      - generic [ref=f136e203]:
+        - generic [ref=f136e204]:
+          - text: PROGRAM INCLUSIONS
+          - heading "Program Inclusions" [level=2] [ref=f136e205]
+          - paragraph [ref=f136e206]: "Everything included when you join Course 3 — Edupreneur Mentorship:"
+        - generic [ref=f136e207]:
+          - generic [ref=f136e208]:
+            - generic [ref=f136e209]: ✓
+            - generic [ref=f136e210]: Certificate
+          - generic [ref=f136e211]:
+            - generic [ref=f136e212]: ✓
+            - generic [ref=f136e213]: Lifetime Recordings Access
+          - generic [ref=f136e214]:
+            - generic [ref=f136e215]: ✓
+            - generic [ref=f136e216]: Exclusive Premium WhatsApp Group
+          - generic [ref=f136e217]:
+            - generic [ref=f136e218]: ✓
+            - generic [ref=f136e219]: Weekly 1:1 Mentoring
+          - generic [ref=f136e220]:
+            - generic [ref=f136e221]: ✓
+            - generic [ref=f136e222]: Assignment Reviews
+          - generic [ref=f136e223]:
+            - generic [ref=f136e224]: ✓
+            - generic [ref=f136e225]: Business Templates
+          - generic [ref=f136e226]:
+            - generic [ref=f136e227]: ✓
+            - generic [ref=f136e228]: Priority Doubt Support
+          - generic [ref=f136e229]:
+            - generic [ref=f136e230]: ✓
+            - generic [ref=f136e231]: Growth Roadmap
+      - generic [ref=f136e232]:
+        - generic [ref=f136e233]:
+          - text: YOUR MENTOR
+          - heading "Meet Your Lead Mentor" [level=2] [ref=f136e234]
+        - generic [ref=f136e235]:
+          - generic [ref=f136e236]:
+            - img "Vikram Sundaram - MathsManthra Lead Mentor" [ref=f136e237]
+            - generic [ref=f136e238]:
+              - generic [ref=f136e239]: verified
+              - generic [ref=f136e240]: Master Mentor
+          - heading "Vikram Sundaram" [level=3] [ref=f136e241]
+          - paragraph [ref=f136e242]: Founder, MathsManthra Academy | EdTech Strategist
+          - generic [ref=f136e243]:
+            - generic [ref=f136e244]:
+              - generic [ref=f136e245]: workspace_premium
+              - paragraph [ref=f136e246]:
+                - strong [ref=f136e247]: "Experience:"
+                - text: 10+ Years in Education, EdTech Scaling & Teacher Mentorship
+            - generic [ref=f136e248]:
+              - generic [ref=f136e249]: groups_2
+              - paragraph [ref=f136e250]:
+                - strong [ref=f136e251]: "Track Record:"
+                - text: Mentored 5,000+ Educators across India to build independent careers
+            - generic [ref=f136e252]:
+              - generic [ref=f136e253]: psychology
+              - paragraph [ref=f136e254]:
+                - strong [ref=f136e255]: "Specialization:"
+                - text: Academy Architecture, AI Automation, Personal Branding & Sales Systems
+      - generic [ref=f136e256]:
+        - generic [ref=f136e257]:
+          - text: INVEST IN YOUR FUTURE
+          - heading "Course 3 — Edupreneur Mentorship" [level=2] [ref=f136e258]
+        - generic [ref=f136e259]:
+          - generic [ref=f136e260]: 40% OFF
+          - generic [ref=f136e261]:
+            - generic [ref=f136e262]:
+              - generic [ref=f136e263]: ₹5,999
+              - generic [ref=f136e264]: ₹9,999
+              - generic [ref=f136e265]: Save ₹4,000
+            - paragraph [ref=f136e266]:
+              - text: "Duration:"
+              - strong [ref=f136e267]: 1-Month Intensive Program
+              - text: • Limited Seats Only
+          - generic [ref=f136e268]:
+            - generic [ref=f136e269]:
+              - generic [ref=f136e270]: check_circle
+              - generic [ref=f136e271]: Everything from Courses 1 & 2 Included
+            - generic [ref=f136e272]:
+              - generic [ref=f136e273]: check_circle
+              - generic [ref=f136e274]: Weekly 1:1 Mentoring with Vikram Sundaram
+            - generic [ref=f136e275]:
+              - generic [ref=f136e276]: check_circle
+              - generic [ref=f136e277]: Complete Legal & Business Frameworks
+            - generic [ref=f136e278]:
+              - generic [ref=f136e279]: check_circle
+              - generic [ref=f136e280]: Lifetime Recordings & Template Access
+            - generic [ref=f136e281]:
+              - generic [ref=f136e282]: check_circle
+              - generic [ref=f136e283]: Official Certificate of Completion
+            - generic [ref=f136e284]:
+              - generic [ref=f136e285]: check_circle
+              - generic [ref=f136e286]: Exclusive Premium WhatsApp Support Group
+          - generic [ref=f136e287]:
+            - button "bolt Enroll Now — ₹5,999" [ref=f136e288] [cursor=pointer]:
+              - generic [ref=f136e289]: bolt
+              - generic [ref=f136e290]: Enroll Now — ₹5,999
+            - button "support_agent Book Free Consultation" [ref=f136e291] [cursor=pointer]:
+              - generic [ref=f136e292]: support_agent
+              - generic [ref=f136e293]: Book Free Consultation
+            - link "chat Chat on WhatsApp" [ref=f136e294] [cursor=pointer]:
+              - /url: https://wa.me/917560908799?text=Hi%20MathsManthra%2C%20I%20am%20interested%20in%20Course%203%20%E2%80%94%20Edupreneur%20Mentorship.
+              - generic [ref=f136e295]: chat
+              - generic [ref=f136e296]: Chat on WhatsApp
+      - generic [ref=f136e297]:
+        - generic [ref=f136e298]:
+          - text: HAVE QUESTIONS?
+          - heading "Frequently Asked Questions" [level=2] [ref=f136e299]
+        - generic [ref=f136e300]:
+          - group [ref=f136e301]:
+            - 'generic "What is Course 3: Edupreneur Mentorship? expand_more" [ref=f136e302] [cursor=pointer]':
+              - generic [ref=f136e303]: "What is Course 3: Edupreneur Mentorship?"
+              - generic [ref=f136e304]: expand_more
+          - group [ref=f136e305]:
+            - generic "What is included from Courses 1 & 2? expand_more" [ref=f136e306] [cursor=pointer]:
+              - generic [ref=f136e307]: What is included from Courses 1 & 2?
+              - generic [ref=f136e308]: expand_more
+          - group [ref=f136e309]:
+            - generic "How does the 1-Month program work? expand_more" [ref=f136e310] [cursor=pointer]:
+              - generic [ref=f136e311]: How does the 1-Month program work?
+              - generic [ref=f136e312]: expand_more
+          - group [ref=f136e313]:
+            - generic "Are legal and registration topics covered? expand_more" [ref=f136e314] [cursor=pointer]:
+              - generic [ref=f136e315]: Are legal and registration topics covered?
+              - generic [ref=f136e316]: expand_more
+          - group [ref=f136e317]:
+            - generic "Will I get recordings and certification? expand_more" [ref=f136e318] [cursor=pointer]:
+              - generic [ref=f136e319]: Will I get recordings and certification?
+              - generic [ref=f136e320]: expand_more
+      - generic [ref=f136e322]:
+        - generic [ref=f136e324]: “
+        - heading "Build your dream. Lead your academy. Change lives. Leave a legacy." [level=2] [ref=f136e325]
+        - paragraph [ref=f136e326]: Take the step from educator to academy founder with MathsManthra Academy.
+        - generic [ref=f136e327]:
+          - button "Enroll Now — ₹5,999 (40% OFF) arrow_forward" [ref=f136e328] [cursor=pointer]:
+            - generic [ref=f136e329]: Enroll Now — ₹5,999 (40% OFF)
+            - generic [ref=f136e330]: arrow_forward
+          - button "support_agent Book Free Consultation" [ref=f136e331] [cursor=pointer]:
+            - generic [ref=f136e332]: support_agent
+            - generic [ref=f136e333]: Book Free Consultation
+          - link "chat Chat on WhatsApp" [ref=f136e334] [cursor=pointer]:
+            - /url: https://wa.me/917560908799?text=Hi%20MathsManthra%2C%20I%20am%20interested%20in%20Course%203%20%E2%80%94%20Edupreneur%20Mentorship.
+            - generic [ref=f136e335]: chat
+            - generic [ref=f136e336]: Chat on WhatsApp
+      - generic [ref=f136e337]:
+        - paragraph [ref=f136e338]: MathsManthra Academy
+        - paragraph [ref=f136e339]: “Better Teachers… Bigger Impact!”
+        - paragraph [ref=f136e340]: © 2025 MathsManthra Academy. All rights reserved.
+        - paragraph [ref=f136e341]: "Contact: +91 75609 08799"
+    - button "Open MathsManthra AI Assistant" [ref=f136e342] [cursor=pointer]:
+      - img "Smija - MathsManthra AI Assistant" [ref=f136e344]
+    - complementary [ref=f136e347]:
+      - generic [ref=f136e348]:
+        - generic [ref=f136e349]: ₹5,999
+        - generic [ref=f136e350]: 1-Month Intensive
+      - generic [ref=f136e351]:
+        - button "support_agent Free Call" [ref=f136e352] [cursor=pointer]:
+          - generic [ref=f136e353]: support_agent
+          - generic [ref=f136e354]: Free Call
+        - button "Enroll Now" [ref=f136e355] [cursor=pointer]
+  - dialog "Your Enrollment Details":
+    - generic:
+      - generic:
+        - paragraph: Step 1 of 3
+        - heading "Your Enrollment Details" [level=2]
+      - button "Close":
+        - generic: close
+    - generic:
+      - generic:
+        - generic: Full Name *
+        - textbox "Full Name *":
+          - /placeholder: E.g. Priya Sharma
+      - generic:
+        - generic: WhatsApp Number *
+        - generic:
+          - generic: "+91"
+          - textbox "WhatsApp Number *":
+            - /placeholder: "9876543210"
+      - generic:
+        - generic: Email Address *
+        - textbox "Email Address *":
+          - /placeholder: you@example.com
+      - generic:
+        - generic: Select Course *
+        - combobox "Select Course *":
+          - option "— Choose a course —"
+          - option "Course 3 — Edupreneur Mentorship — ₹5999" [selected]
+      - button "Proceed to Payment →"
+      - paragraph: 🔒 Your details are safe with us. No spam.
+  - dialog "Complete Payment":
+    - generic:
+      - generic:
+        - paragraph: Step 2 of 3
+        - heading "Complete Payment" [level=2]
+      - button "Close":
+        - generic: close
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - paragraph: Lead ID
+            - paragraph: MM0000
+          - generic:
+            - paragraph: Amount
+            - paragraph: ₹5,999
+        - paragraph: "Course:"
+      - generic:
+        - paragraph: Scan QR to Pay via any UPI App
+        - generic:
+          - img "UPI QR Code"
+        - paragraph: "Pay to:"
+      - generic:
+        - paragraph: Or open directly in
+        - generic:
+          - button "🟢 GPay":
+            - generic: 🟢
+            - generic: GPay
+          - button "🟣 PhonePe":
+            - generic: 🟣
+            - generic: PhonePe
+          - button "🔵 Paytm":
+            - generic: 🔵
+            - generic: Paytm
+        - button "Open Any UPI App"
+      - button "✅ I've Paid — Upload Proof"
+      - paragraph:
+        - text: 💬 Having trouble?
+        - link "WhatsApp us":
+          - /url: "#"
+  - dialog "Upload Payment Screenshot":
+    - generic:
+      - generic:
+        - paragraph: Step 3 of 3
+        - heading "Upload Payment Screenshot" [level=2]
+      - button "Close":
+        - generic: close
+    - generic:
+      - generic:
+        - generic:
+          - paragraph: Lead ID
+          - paragraph: MM0000
+        - generic:
+          - paragraph: Amount Paid
+          - paragraph: ₹5,999
+      - generic:
+        - generic: upload_file
+        - generic: Tap to upload screenshot
+        - generic: JPG, PNG, WEBP — max 10 MB
+      - button "Submit Payment Proof"
+  - dialog "Payment Proof Submitted!":
+    - generic:
+      - generic: check_circle
+      - heading "Payment Proof Submitted!" [level=2]
+      - paragraph: Our team will verify your payment and contact you shortly on WhatsApp.
+      - generic:
+        - paragraph: Your Lead ID
+        - paragraph: MM0000
+        - paragraph: Keep this for your reference
+      - button "chat Join WhatsApp Support Group":
+        - generic: chat
+        - text: Join WhatsApp Support Group
+      - button "Close"
+  - dialog "Book Free Consultation":
+    - generic:
+      - generic:
+        - generic:
+          - generic: support_agent
+          - text: 1-on-1 Free Call
+        - heading "Book Free Consultation" [level=2]
+      - button "Close":
+        - generic: close
+    - generic:
+      - generic:
+        - generic: Full Name *
+        - textbox "Full Name *":
+          - /placeholder: E.g. Priya Sharma
+      - generic:
+        - generic: WhatsApp Number *
+        - generic:
+          - generic: "+91"
+          - textbox "WhatsApp Number *":
+            - /placeholder: "9876543210"
+      - generic:
+        - generic: Email Address *
+        - textbox "Email Address *":
+          - /placeholder: you@example.com
+      - generic:
+        - generic: Academy Name *
+        - textbox "Academy Name *":
+          - /placeholder: E.g. MathsManthra Academy / Apex Classes
+      - generic:
+        - generic: Consultation Topic *
+        - combobox "Consultation Topic *":
+          - option "— Select Consultation Topic —" [selected]
+          - option "Scaling & Growing My Academy"
+          - option "Launching Course 3 — Edupreneur Mentorship"
+          - option "Student Acquisition & Lead Generation"
+          - option "Online / Hybrid Teaching Infrastructure"
+          - option "Pricing, Fee Structure & Revenue Strategy"
+          - option "Other Academy Guidance"
+      - generic:
+        - generic: Specific Questions or Goals (Optional)
+        - textbox "Specific Questions or Goals (Optional)":
+          - /placeholder: Tell us briefly what specific challenges or goals you want to discuss...
+      - button "Submit Consultation Enquiry →"
+      - paragraph: ⚡ 15-Minute 1-on-1 Guidance • 100% Free • No Obligation
+  - dialog "Consultation Booked!":
+    - generic:
+      - generic: support_agent
+      - heading "Consultation Booked!" [level=2]
+      - paragraph: Thank you! Our academic counselor will reach out on WhatsApp within 24 hours to coordinate your preferred 15-minute slot.
+      - generic:
+        - paragraph: Consultation ID
+        - paragraph: FC0000
+        - paragraph: Saved for your reference
+      - button "chat Chat with Counselor Now":
+        - generic: chat
+        - text: Chat with Counselor Now
+      - button "Close"
