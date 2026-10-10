@@ -22,7 +22,9 @@ const MM_CONFIG = {
   WHATSAPP_NUMBER: "917560908799",
 
   // ── AI Mentor Assistant Endpoint ──────────────────────────────────────────
-  AI_API_URL: "http://localhost:4000/api/chat",
+  AI_API_URL: (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"))
+    ? "http://localhost:4000/api/chat"
+    : "https://mathsmanthralandingpage-production.up.railway.app/api/chat",
 
   // ── Courses & Pricing ──────────────────────────────────────────────────────
   COURSES: [

@@ -12,7 +12,7 @@
     : "https://mathsmanthralandingpage-production.up.railway.app/api/chat";
 
   // Founder avatar URL
-  const AVATAR_URL = "/mathsmanthra-ai-assistant/public/images/smija/idle.png";
+  const AVATAR_URL = "./mathsmanthra-ai-assistant/public/images/smija/idle.png";
 
   // State
   let isChatOpen = false;
@@ -26,10 +26,10 @@
    */
   function setSmijaState(state) {
     const SMIJA_STATES = {
-      idle: "/mathsmanthra-ai-assistant/public/images/smija/idle.png",
-      thinking: "/mathsmanthra-ai-assistant/public/images/smija/thinking.png",
-      answer: "/mathsmanthra-ai-assistant/public/images/smija/answer.png",
-      error: "/mathsmanthra-ai-assistant/public/images/smija/error.png"
+      idle: "./mathsmanthra-ai-assistant/public/images/smija/idle.png",
+      thinking: "./mathsmanthra-ai-assistant/public/images/smija/thinking.png",
+      answer: "./mathsmanthra-ai-assistant/public/images/smija/answer.png",
+      error: "./mathsmanthra-ai-assistant/public/images/smija/error.png"
     };
 
     const avatar = document.getElementById("smijaAvatar");
